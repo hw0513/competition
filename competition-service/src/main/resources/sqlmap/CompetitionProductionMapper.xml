@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+* 代码为自动生成 Created by www.magicalcoder.com
+* 如果你改变了此类 read 请将此行删除
+*  欢迎加入官方QQ群:323237052
+-->
+<mapper namespace="com.hw.competition.service.competitionproduction.mapper.CompetitionProductionMapper">
+    <!-- CompetitionProduction -->
+    <resultMap id="resultMap" type="CompetitionProduction">
+                <id column="production_id" property="productionId"/>
+                <result column="production_name" property="productionName" />
+                <result column="production_sorce" property="productionSorce" />
+                <result column="player_info" property="playerInfo" />
+    </resultMap>
+    <!-- 查询单个实体 -->
+    <select id="getModel" parameterType="hashmap" resultMap="resultMap">
+        select  <choose><when test="NotIgnore_!=null and NotIgnore_"><include refid="selectSqlNotIgnoreModel"/> </when><otherwise><include refid="selectSqlIgnoreModel"/></otherwise></choose>
+        from  <include refid="tableSql"/>  where 1=1 <include refid="whereSqlModel"/> <include refid="orderGroupLimit"/>
+    </select>
+    <!--根据主键 查询单个实体 -->
+    <select id="getModelByPk" parameterType="hashmap" resultMap="resultMap">
+        select  <choose><when test="NotIgnore_!=null and NotIgnore_"><include refid="selectSqlNotIgnoreModel"/> </when><otherwise><include refid="selectSqlIgnoreModel"/></otherwise></choose>
+        from  <include refid="tableSql"/>  <include refid="magicalcoderPkWhereSql"/>
+    </select>
+    <!-- 查询一组实体 -->
+    <select id="getModelList" parameterType="hashmap" resultMap="resultMap">
+        select  <choose><when test="NotIgnore_!=null and NotIgnore_"><include refid="selectSqlNotIgnoreModel"/> </when><otherwise><include refid="selectSqlIgnoreModel"/></otherwise></choose>
+        from  <include refid="tableSql"/>  where 1=1 <include refid="whereSqlModel"/> <include refid="orderGroupLimit"/>
+    </select>
+    <!-- 查询一组实体 in 语句-->
+    <select id="getModelInList" parameterType="hashmap" resultMap="resultMap">
+        select  <choose><when test="NotIgnore_!=null and NotIgnore_"><include refid="selectSqlNotIgnoreModel"/> </when><otherwise><include refid="selectSqlIgnoreModel"/></otherwise></choose>
+        from  <include refid="tableSql"/>  where  `production_id` in
+        <foreach item="id" index="index" collection="idList" open="(" separator="," close=")">#{id}</foreach>
+        <include refid="orderGroupLimit"/>
+    </select>
+    <!-- 查询一组实体的数量 -->
+    <select id="getModelListCount" parameterType="hashmap" resultType="int">
+        select count(1)  from  <include refid="tableSql"/>  where 1=1 <include refid="whereSqlModel"/> <include refid="orderGroupLimit"/>
+    </select>
+    <!-- 插入单个实体 遇到入参null转换成数据库NULL-->
+    <insert id="insertModel" parameterType="CompetitionProduction"  useGeneratedKeys="true" keyProperty="productionId" >
+        insert into <include refid="tableSql"/> (<include refid="douFieldSql"/>) values(<include refid="douValueSql"/>)
+    </insert>
+    <!-- 替换单个实体 如果没有则插入 遇到入参null转换成数据库NULL-->
+    <insert id="replaceModel" parameterType="CompetitionProduction"  useGeneratedKeys="true" keyProperty="productionId" >
+        replace into <include refid="tableSql"/> (<include refid="douFieldSql"/>) values(<include refid="douValueSql"/>)
+    </insert>
+    <!-- 插入单个实体 遇到入参null转换成数据库默认值-->
+    <insert id="insertModelWithoutNull" parameterType="CompetitionProduction"  useGeneratedKeys="true" keyProperty="productionId" >
+        insert into <include refid="tableSql"/> (<include refid="douFieldWithoutNullSql"/>) values(<include refid="douValueWithoutNullSql"/>)
+    </insert>
+    <!-- 替换单个实体 如果没有则插入 遇到入参null转换成数据库默认值-->
+    <insert id="replaceModelWithoutNull" parameterType="CompetitionProduction"  useGeneratedKeys="true" keyProperty="productionId" >
+        replace into <include refid="tableSql"/> (<include refid="douFieldWithoutNullSql"/>) values(<include refid="douValueWithoutNullSql"/>)
+    </insert>
+    <!-- 批量插入一组实体 -->
+    <insert id="batchInsertModel" parameterType="java.util.List"   useGeneratedKeys="true" keyProperty="productionId" >
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            insert into <include refid="tableSql"/> (<include refid="batchDouFieldSql"/>) values (<include refid="batchDouValueSql"/>)
+        </foreach>
+    </insert>
+    <!-- 批量替换一组实体 -->
+    <insert id="batchReplaceModel" parameterType="java.util.List"  useGeneratedKeys="true" keyProperty="productionId" >
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            replace into <include refid="tableSql"/> (<include refid="batchDouFieldSql"/>) values (<include refid="batchDouValueSql"/>)
+        </foreach>
+    </insert>
+    <insert id="batchInsertModelWithoutNull" parameterType="java.util.List"   useGeneratedKeys="true" keyProperty="productionId" >
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            insert into <include refid="tableSql"/> (<include refid="batchDouFieldWithoutNullSql"/>) values (<include refid="batchDouValueWithoutNullSql"/>)
+        </foreach>
+    </insert>
+    <insert id="batchReplaceModelWithoutNull" parameterType="java.util.List"  useGeneratedKeys="true" keyProperty="productionId" >
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            replace into <include refid="tableSql"/> (<include refid="batchDouFieldWithoutNullSql"/>) values (<include refid="batchDouValueWithoutNullSql"/>)
+        </foreach>
+    </insert>
+
+        <!-- 清空表 操作危险 慎用，暂时注销掉-->
+    <delete id="truncateModel">
+        -- truncate table <include refid="tableSql"/>
+    </delete>
+
+    <!-- 根据主键删除一个实体 magicalCoderPrimaryKeyName 框架封装-->
+    <delete id="deleteModelByPk" parameterType="hashmap">
+        delete from <include refid="tableSql"/> <include refid="magicalcoderPkWhereSql"/>
+    </delete>
+
+    <delete id="deleteModelList" parameterType="hashmap">
+        delete from <include refid="tableSql"/> where 1=1 <include refid="whereSqlModel"/>
+    </delete>
+
+    <!-- 批量删除实体 in 根据主键-->
+    <delete id="deleteModelByIds" parameterType="java.util.Set">
+        delete from <include refid="tableSql"/> where `production_id` in <foreach item="id" index="index" collection="collection" open="(" separator="," close=")">#{id}</foreach>
+    </delete>
+    <!-- 更新一个实体 -->
+    <update id="updateModel" parameterType="CompetitionProduction">
+        update <include refid="tableSql"/> <include refid="updateSetSql"/> <include refid="updatePkWhereSql"/>
+    </update>
+    <!-- 更新一个实体 仅仅当被更新的字段不为空的时候才更新，否则忽略更新-->
+    <update id="updateModelWithoutNull" parameterType="CompetitionProduction">
+        update <include refid="tableSql"/> <include refid="updateSetWithoutNullSql"/> <include refid="updatePkWhereSql"/>
+    </update>
+     <!-- 批量更新实体 传入一组实体，分别根据主键作为查询条件-->
+    <update id="batchUpdateModel" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update <include refid="tableSql"/> <include refid="batchUpdateSetSql"/> <include refid="batchUpdatePkWhereSql"/>
+        </foreach>
+    </update>
+    <update id="batchUpdateModelWithoutNull" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update <include refid="tableSql"/> <include refid="batchUpdateWithoutNullSetSql"/> <include refid="batchUpdatePkWhereSql"/>
+        </foreach>
+    </update>
+    <!-- sql 片段 -->
+   <sql id="selectSqlIgnoreModel">
+        <trim suffixOverrides=",">
+            <if test="productionIdIgnore_ == null or !productionIdIgnore_">`production_id`,</if>
+            <if test="productionNameIgnore_ == null or !productionNameIgnore_">`production_name`,</if>
+            <if test="productionSorceIgnore_ == null or !productionSorceIgnore_">`production_sorce`,</if>
+            <if test="playerInfoIgnore_ == null or !playerInfoIgnore_">`player_info`</if>
+        </trim>
+    </sql>
+    <sql id="selectSqlNotIgnoreModel">
+        <trim suffixOverrides=",">
+         <if test="productionIdNotIgnore_ != null and productionIdNotIgnore_">`production_id`,</if>
+         <if test="productionNameNotIgnore_ != null and productionNameNotIgnore_">`production_name`,</if>
+         <if test="productionSorceNotIgnore_ != null and productionSorceNotIgnore_">`production_sorce`,</if>
+         <if test="playerInfoNotIgnore_ != null and playerInfoNotIgnore_">`player_info`</if>
+        </trim>
+    </sql>
+    <sql id="douFieldSql">
+        <trim suffixOverrides=",">
+            <if test="productionId!=null">`production_id`,</if> `production_name`,`production_sorce`,`player_info`,
+        </trim>
+    </sql>
+    <sql id="douValueSql">
+        <trim suffixOverrides=",">
+                <choose><when test="productionId!=null">#{productionId},</when></choose>
+                <choose><when test="productionName!=null">#{productionName},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="productionSorce!=null">#{productionSorce},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="playerInfo!=null">#{playerInfo},</when><otherwise>NULL,</otherwise></choose>
+        </trim>
+    </sql>
+
+    <sql id="douFieldWithoutNullSql">
+        <trim suffixOverrides=",">
+                <if test="productionId!=null">`production_id`,</if>
+                <if test="productionName!=null">`production_name`,</if>
+                <if test="productionSorce!=null">`production_sorce`,</if>
+                <if test="playerInfo!=null">`player_info`,</if>
+
+        </trim>
+    </sql>
+    <sql id="douValueWithoutNullSql">
+        <trim suffixOverrides=",">
+                <choose><when test="productionId!=null">#{productionId},</when></choose>
+                <choose><when test="productionName!=null">#{productionName},</when></choose>
+                <choose><when test="productionSorce!=null">#{productionSorce},</when></choose>
+                <choose><when test="playerInfo!=null">#{playerInfo},</when></choose>
+        </trim>
+    </sql>
+    <sql id="batchDouFieldSql">
+        <trim suffixOverrides=",">
+                <if test="item.productionId!=null">`production_id`,</if> `production_name`,`production_sorce`,`player_info`,
+        </trim>
+    </sql>
+    <sql id="batchDouValueSql">
+        <trim suffixOverrides=",">
+                <choose><when test="item.productionId!=null">#{item.productionId},</when></choose>
+                <choose><when test="item.productionName!=null">#{item.productionName},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="item.productionSorce!=null">#{item.productionSorce},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="item.playerInfo!=null">#{item.playerInfo},</when><otherwise>NULL,</otherwise></choose>
+        </trim>
+    </sql>
+    <sql id="batchDouFieldWithoutNullSql">
+        <trim suffixOverrides=",">
+                <if test="item.productionId!=null">`production_id`,</if>
+                <if test="item.productionName!=null">`production_name`,</if>
+                <if test="item.productionSorce!=null">`production_sorce`,</if>
+                <if test="item.playerInfo!=null">`player_info`,</if>
+
+        </trim>
+    </sql>
+    <sql id="batchDouValueWithoutNullSql">
+        <trim suffixOverrides=",">
+                <choose><when test="item.productionId!=null">#{item.productionId},</when></choose>
+                <choose><when test="item.productionName!=null">#{item.productionName},</when></choose>
+                <choose><when test="item.productionSorce!=null">#{item.productionSorce},</when></choose>
+                <choose><when test="item.playerInfo!=null">#{item.playerInfo},</when></choose>
+        </trim>
+    </sql>
+    <sql id="updateSetSql">
+        <set>
+                    <choose> <when test="productionName!=null">`production_name`=#{productionName}</when> <otherwise> `production_name`=NULL</otherwise> </choose>,
+                    <choose> <when test="productionSorce!=null">`production_sorce`=#{productionSorce}</when> <otherwise> `production_sorce`=NULL</otherwise> </choose>,
+                    <choose> <when test="playerInfo!=null">`player_info`=#{playerInfo}</when> <otherwise> `player_info`=NULL</otherwise> </choose>,
+        </set>
+    </sql>
+    <sql id="updateSetWithoutNullSql">
+        <set>
+                    <choose><when test="productionName!=null">`production_name`=#{productionName},</when></choose>
+                    <choose><when test="productionSorce!=null">`production_sorce`=#{productionSorce},</when></choose>
+                    <choose><when test="playerInfo!=null">`player_info`=#{playerInfo},</when></choose>
+        </set>
+    </sql>
+    <sql id="magicalcoderPkWhereSql">
+        where 1=1
+            and `production_id` = #{magicalCoderPrimaryKeyName}
+    </sql>
+    <sql id="updatePkWhereSql">
+        where 1=1
+            and `production_id` = #{productionId}
+    </sql>
+    <sql id="batchUpdateSetSql">
+        <set>
+                    <choose> <when test="item.productionName!=null">`production_name`=#{item.productionName}</when> <otherwise> `production_name`=NULL</otherwise> </choose>,
+                    <choose> <when test="item.productionSorce!=null">`production_sorce`=#{item.productionSorce}</when> <otherwise> `production_sorce`=NULL</otherwise> </choose>,
+                    <choose> <when test="item.playerInfo!=null">`player_info`=#{item.playerInfo}</when> <otherwise> `player_info`=NULL</otherwise> </choose>,
+        </set>
+    </sql>
+    <sql id="batchUpdateWithoutNullSetSql">
+        <set>
+                    <choose> <when test="item.productionName!=null">`production_name`=#{item.productionName},</when></choose>
+                    <choose> <when test="item.productionSorce!=null">`production_sorce`=#{item.productionSorce},</when></choose>
+                    <choose> <when test="item.playerInfo!=null">`player_info`=#{item.playerInfo},</when></choose>
+        </set>
+    </sql>
+    <sql id="batchUpdatePkWhereSql">
+        where 1=1
+            and `production_id` = #{item.productionId}
+    </sql>
+    <!-- 这里可以加上数据库名称 方便的切换数据库-->
+    <sql id="tableSql">
+        competition.competition_production
+    </sql>
+
+   <sql id="whereSqlModel">
+        <if test="productionId!=null "> and `production_id` = #{productionId}</if>
+        <if test="productionName!=null "> and `production_name` = #{productionName}</if>
+        <if test="productionSorce!=null "> and `production_sorce` = #{productionSorce}</if>
+        <if test="playerInfo!=null "> and `player_info` = #{playerInfo}</if>
+                <if test="productionIdFirst!=null "> and `production_id` <![CDATA[=]]>
+                            #{productionIdFirst}
+                </if>
+                <if test="productionNameFirst!=null "> and `production_name` <![CDATA[=]]>
+                            #{productionNameFirst}
+                </if>
+                <if test="productionSorceFirst!=null "> and `production_sorce` <![CDATA[=]]>
+                            #{productionSorceFirst}
+                </if>
+                <if test="playerInfoFirst!=null "> and `player_info` <![CDATA[=]]>
+                            #{playerInfoFirst}
+                </if>
+        <!--<if test="whereSql!=null"> ${whereSql}</if>-->
+    </sql>
+
+    <sql id="safeGroupBy">
+        <if test="safeGroupBy!=null and safeGroupBy!=''">
+            group by
+            <choose>
+                <when test="safeGroupBy != null and safeGroupBy == 'production_id'">  `production_id` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'production_name'">  `production_name` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'production_sorce'">  `production_sorce` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'player_info'">  `player_info` </when>
+            </choose>
+        </if>
+    </sql>
+    <sql id="safeOrderBy">
+        <if test="safeOrderBy!=null and safeOrderBy!=''">
+            <choose>
+                <when test="safeOrderBy != null and safeOrderBy == 'production_id desc'"> order by  `production_id` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'production_id asc'"> order by `production_id` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'production_name desc'"> order by  `production_name` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'production_name asc'"> order by `production_name` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'production_sorce desc'"> order by  `production_sorce` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'production_sorce asc'"> order by `production_sorce` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'player_info desc'"> order by  `player_info` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'player_info asc'"> order by `player_info` asc </when>
+            </choose>
+        </if>
+    </sql>
+
+    <sql id="orderGroupLimit">
+        <include refid="safeGroupBy"/>
+        <if test="notSafeGroupBy != null and notSafeGroupBy != ''"> group by ${notSafeGroupBy}</if>
+        <include refid="safeOrderBy"/>
+        <if test="notSafeOrderBy != null and notSafeOrderBy != ''"> order by ${notSafeOrderBy}</if>
+        <if test="limit != null"> LIMIT <if test="start != null">#{start},</if>#{limit} </if>
+    </sql>
+
+</mapper>
