@@ -1,0 +1,49 @@
+
+<!--
+代码为自动生成 Created by www.magicalcoder.com
+ 如果你改变了此类 read 请将此行删除
+ 欢迎加入官方QQ群:323237052
+-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head  th:include="magicalcoder/v001/include/head :: commonHead('参赛队伍表编辑')"/>
+
+<body class="childrenBody layui-hide">
+<form class="layui-form" style="width:80%;">
+
+    <div class="layui-form-item layui-row layui-col-xs12 security_edit_form_param_teamId">
+        <label class="layui-form-label">team_id</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" name="teamId"  placeholder="team_id请保证唯一，如果已存在则会覆盖，如果不填写则新增"/>
+        </div>
+    </div>
+    <div class="layui-form-item layui-row layui-col-xs12 security_edit_form_param_teamName">
+        <label class="layui-form-label">team_name</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" name="teamName" placeholder="请输入team_name" lay-verify="magicalCoderVerify" magicalcoder-verify="" value="" />
+        </div>
+    </div>
+    <div class="layui-form-item layui-row layui-col-xs12 security_edit_form_param_studentId">
+        <label class="layui-form-label">队伍成员</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" name="studentId" placeholder="请输入队伍成员" lay-verify="magicalCoderVerify" magicalcoder-verify="" value="" />
+        </div>
+    </div>
+    <div class="layui-form-item layui-row layui-col-xs12 security_edit_form_param_competitionId">
+        <label class="layui-form-label">竞赛Id</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" name="competitionId" placeholder="请输入竞赛Id" lay-verify="magicalCoderVerify" magicalcoder-verify="" value="" />
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <div class="layui-input-block">
+            <button class="layui-btn security_edit_form_operate_save" lay-submit="" lay-filter="save">立即提交</button>
+            <button type="reset" class="layui-hide layui-btn layui-btn-primary" >重置</button>
+        </div>
+    </div>
+</form>
+    <div th:replace="magicalcoder/v001/include/main-js :: commonMain" />
+    <script type="text/javascript"  th:src="@{/assets/admin/team/team-edit.js}"></script>
+</body>
+</html>

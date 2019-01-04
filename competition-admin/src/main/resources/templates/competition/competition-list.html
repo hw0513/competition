@@ -1,0 +1,93 @@
+<!--
+代码为自动生成 Created by www.magicalcoder.com
+ 如果你改变了此类 read 请将此行删除
+ 欢迎加入官方QQ群:323237052
+-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head  th:include="magicalcoder/v001/include/head :: commonHead('竞赛表列表')"/>
+<body class="childrenBody layui-hide">
+    <form class="layui-form queryForm">
+        <blockquote class="layui-elem-quote quoteBox security_list_query_form">
+            <form class="layui-form-item"><!--注意这个form最终会被layui删除-->
+                <div class="layui-inline security_list_query_param_competitionId">
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" data-name="competitionId" name="competitionIdFirst" placeholder="竞赛id" />
+                    </div>
+                </div>
+                <div class="layui-inline security_list_query_param_enrollDatetimeBegin">
+                    <div class="layui-input-inline" >
+                        <input type="text" data-name="enrollDatetimeBegin" name="enrollDatetimeBeginFirst" lay-verify="datetime"  placeholder="起始竞赛截止开始报名时间" autocomplete="off" class="magicalcoder-laydate layui-input"/>
+                    </div>
+                    <div class="layui-input-inline">-</div>
+                    <div class="layui-input-inline" >
+                        <input type="text" data-name="enrollDatetimeBegin"  name="enrollDatetimeBeginSecond" lay-verify="datetime"  placeholder="终止竞赛截止开始报名时间" autocomplete="off" class="magicalcoder-laydate layui-input"/>
+                    </div>
+                </div>
+                <div class="layui-inline security_list_query_param_enrollDatetimeEnd">
+                    <div class="layui-input-inline" >
+                        <input type="text" data-name="enrollDatetimeEnd" name="enrollDatetimeEndFirst" lay-verify="datetime"  placeholder="起始竞赛截止报名时间" autocomplete="off" class="magicalcoder-laydate layui-input"/>
+                    </div>
+                    <div class="layui-input-inline">-</div>
+                    <div class="layui-input-inline" >
+                        <input type="text" data-name="enrollDatetimeEnd"  name="enrollDatetimeEndSecond" lay-verify="datetime"  placeholder="终止竞赛截止报名时间" autocomplete="off" class="magicalcoder-laydate layui-input"/>
+                    </div>
+                </div>
+                <div class="layui-inline security_list_query_param_productDatetimeEnd">
+                    <div class="layui-input-inline" >
+                        <input type="text" data-name="productDatetimeEnd" name="productDatetimeEndFirst" lay-verify="datetime"  placeholder="起始作品提交截止时间" autocomplete="off" class="magicalcoder-laydate layui-input"/>
+                    </div>
+                    <div class="layui-input-inline">-</div>
+                    <div class="layui-input-inline" >
+                        <input type="text" data-name="productDatetimeEnd"  name="productDatetimeEndSecond" lay-verify="datetime"  placeholder="终止作品提交截止时间" autocomplete="off" class="magicalcoder-laydate layui-input"/>
+                    </div>
+                </div>
+                <div class="layui-inline security_list_query_param_judgeDatetimeEnd">
+                    <div class="layui-input-inline" >
+                        <input type="text" data-name="judgeDatetimeEnd" name="judgeDatetimeEndFirst" lay-verify="datetime"  placeholder="起始作品评定截止时间" autocomplete="off" class="magicalcoder-laydate layui-input"/>
+                    </div>
+                    <div class="layui-input-inline">-</div>
+                    <div class="layui-input-inline" >
+                        <input type="text" data-name="judgeDatetimeEnd"  name="judgeDatetimeEndSecond" lay-verify="datetime"  placeholder="终止作品评定截止时间" autocomplete="off" class="magicalcoder-laydate layui-input"/>
+                    </div>
+                </div>
+                <div class="layui-inline security_list_query_param_userId">
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" data-name="userId" name="userIdFirst" placeholder="竞赛管理员" />
+                    </div>
+                </div>
+                <div class="layui-inline security_list_query_operate_search">
+                    <a class="layui-btn search_btn" data-type="reload">搜索</a>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+                <div class="layui-inline security_list_query_operate_add_news">
+                    <a class="layui-btn layui-btn-normal addNews_btn">添加</a>
+                </div>
+                <div class="layui-inline security_list_query_operate_del_all">
+                    <a class="layui-btn layui-btn-danger layui-btn-normal delAll_btn">批量删除</a>
+                </div>
+            </form>
+        </blockquote>
+        <table class="security_list_table" id="newsList" lay-filter="newsListFilter" data-primary-fields="competitionId"></table>
+        <script type="text/html" id="enrollDatetimeBeginTemplate">
+            <input type="text" id="_enrollDatetimeBegin_{{= d.competitionId }}" name="enrollDatetimeBegin"  data-identify="{{= d.competitionId }}"  autocomplete="off" class="magicalcoder-table-laydate layui-input security_list_table_form_enrollDatetimeBegin" value="{{= d.enrollDatetimeBegin}}" lay-verify="magicalCoderVerify" magicalcoder-verify=""  placeholder="竞赛截止开始报名（发布、新增）时间"/>
+        </script>
+        <script type="text/html" id="enrollDatetimeEndTemplate">
+            <input type="text" id="_enrollDatetimeEnd_{{= d.competitionId }}" name="enrollDatetimeEnd"  data-identify="{{= d.competitionId }}"  autocomplete="off" class="magicalcoder-table-laydate layui-input security_list_table_form_enrollDatetimeEnd" value="{{= d.enrollDatetimeEnd}}" lay-verify="magicalCoderVerify" magicalcoder-verify=""  placeholder="竞赛截止报名时间"/>
+        </script>
+        <script type="text/html" id="productDatetimeEndTemplate">
+            <input type="text" id="_productDatetimeEnd_{{= d.competitionId }}" name="productDatetimeEnd"  data-identify="{{= d.competitionId }}"  autocomplete="off" class="magicalcoder-table-laydate layui-input security_list_table_form_productDatetimeEnd" value="{{= d.productDatetimeEnd}}" lay-verify="magicalCoderVerify" magicalcoder-verify=""  placeholder="作品提交截止时间"/>
+        </script>
+        <script type="text/html" id="judgeDatetimeEndTemplate">
+            <input type="text" id="_judgeDatetimeEnd_{{= d.competitionId }}" name="judgeDatetimeEnd"  data-identify="{{= d.competitionId }}"  autocomplete="off" class="magicalcoder-table-laydate layui-input security_list_table_form_judgeDatetimeEnd" value="{{= d.judgeDatetimeEnd}}" lay-verify="magicalCoderVerify" magicalcoder-verify=""  placeholder="作品评定截止时间"/>
+        </script>
+        <!--操作-->
+        <script type="text/html" id="newsListOperateTemplate">
+            <a class="layui-btn layui-btn-sm security_list_table_operate_edit" lay-event="edit">编辑</a>
+            <a class="layui-btn layui-btn-sm layui-btn-danger security_list_table_operate_del" lay-event="del">删除</a>
+        </script>
+    </form>
+    <div th:replace="magicalcoder/v001/include/main-js :: commonMain" />
+    <script type="text/javascript"  th:src="@{/assets/admin/competition/competition-list.js}"></script>
+</body>
+</html>

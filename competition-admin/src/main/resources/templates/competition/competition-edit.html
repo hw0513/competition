@@ -1,0 +1,67 @@
+
+<!--
+代码为自动生成 Created by www.magicalcoder.com
+ 如果你改变了此类 read 请将此行删除
+ 欢迎加入官方QQ群:323237052
+-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head  th:include="magicalcoder/v001/include/head :: commonHead('竞赛表编辑')"/>
+
+<body class="childrenBody layui-hide">
+<form class="layui-form" style="width:80%;">
+
+    <div class="layui-form-item layui-row layui-col-xs12 security_edit_form_param_competitionId">
+        <label class="layui-form-label">竞赛id</label>
+        <div class="layui-input-block">
+            <input type="text" disabled="true" class="layui-input" name="competitionId"  placeholder="主键自动生成，无需手动编辑,如果重置则变成增加数据"/>
+        </div>
+    </div>
+    <div class="layui-form-item layui-row layui-col-xs12 security_edit_form_param_competitionName">
+        <label class="layui-form-label">竞赛名称</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" name="competitionName" placeholder="请输入竞赛名称" lay-verify="magicalCoderVerify" magicalcoder-verify="" value="" />
+        </div>
+    </div>
+    <div class="layui-form-item layui-row layui-col-xs12 security_edit_form_param_enrollDatetimeBegin">
+        <label class="layui-form-label">竞赛截止开始报名时间</label>
+        <div class="layui-input-block">
+            <input type="text"  name="enrollDatetimeBegin" placeholder="请选择竞赛截止开始报名时间"  autocomplete="off" class="magicalcoder-laydate layui-input" lay-verify="magicalCoderVerify" magicalcoder-verify="" value="" />
+        </div>
+    </div>
+    <div class="layui-form-item layui-row layui-col-xs12 security_edit_form_param_enrollDatetimeEnd">
+        <label class="layui-form-label">竞赛截止报名时间</label>
+        <div class="layui-input-block">
+            <input type="text"  name="enrollDatetimeEnd" placeholder="请选择竞赛截止报名时间"  autocomplete="off" class="magicalcoder-laydate layui-input" lay-verify="magicalCoderVerify" magicalcoder-verify="" value="" />
+        </div>
+    </div>
+    <div class="layui-form-item layui-row layui-col-xs12 security_edit_form_param_productDatetimeEnd">
+        <label class="layui-form-label">作品提交截止时间</label>
+        <div class="layui-input-block">
+            <input type="text"  name="productDatetimeEnd" placeholder="请选择作品提交截止时间"  autocomplete="off" class="magicalcoder-laydate layui-input" lay-verify="magicalCoderVerify" magicalcoder-verify="" value="" />
+        </div>
+    </div>
+    <div class="layui-form-item layui-row layui-col-xs12 security_edit_form_param_judgeDatetimeEnd">
+        <label class="layui-form-label">作品评定截止时间</label>
+        <div class="layui-input-block">
+            <input type="text"  name="judgeDatetimeEnd" placeholder="请选择作品评定截止时间"  autocomplete="off" class="magicalcoder-laydate layui-input" lay-verify="magicalCoderVerify" magicalcoder-verify="" value="" />
+        </div>
+    </div>
+    <div class="layui-form-item layui-row layui-col-xs12 security_edit_form_param_userId">
+        <label class="layui-form-label">竞赛管理员</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" name="userId" placeholder="请输入竞赛管理员" lay-verify="magicalCoderVerify" magicalcoder-verify="" value="" />
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-row layui-col-xs12">
+        <div class="layui-input-block">
+            <button class="layui-btn security_edit_form_operate_save" lay-submit="" lay-filter="save">立即提交</button>
+            <button type="reset" class="layui-hide layui-btn layui-btn-primary" >重置</button>
+        </div>
+    </div>
+</form>
+    <div th:replace="magicalcoder/v001/include/main-js :: commonMain" />
+    <script type="text/javascript"  th:src="@{/assets/admin/competition/competition-edit.js}"></script>
+</body>
+</html>
