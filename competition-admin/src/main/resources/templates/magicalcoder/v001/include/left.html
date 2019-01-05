@@ -3,7 +3,7 @@
 <div th:fragment="commonLeft" class="layui-side layui-bg-black">
 	<div class="user-photo">
 		<a class="img" title="我的头像" ><img  th:src="@{/assets/magicalcoder/v001/images/face.jpg}" class="userAvatar"/></a>
-		<p>你好！<span class="userName">magicalcoder.com</span>, 欢迎登录</p>
+		<p>你好！<span class="userName" th:text="${user.username}">magicalcoder.com</span>, 欢迎登录</p>
 	</div>
 	<!-- 搜索 -->
 <!--	<div class="layui-form component hide">

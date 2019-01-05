@@ -1,11 +1,14 @@
 package com.hw.competition.admin.api.competition;
 
 import com.hw.competition.core.service.CommonRestController;
+import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.InitializingBean;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -37,33 +40,49 @@ public class AdminCompetitionRestController extends CommonRestController<Competi
     @Resource
     private CompetitionService competitionService;
 
+    @RequestMapping(value = "search")
+    public ResponseMsg search(
+        @RequestParam(required = false) String uniqueField,
+        @RequestParam(required = false) Long uniqueValue,
+        @RequestParam(required = false,defaultValue = "20") Integer limit,
+        @RequestParam(required = false) String keyword,
+        HttpServletRequest request,
+        HttpSession session,
+        HttpResponse response
+    ){
+        limit = Math.min(PageConstant.MAX_LIMIT,limit);
+        List<Competition> list = null;
+        Map<String,Object> query = new HashedMap();
+        query.put("limit",limit);
+        query.put("notSafeOrderBy","competition_id desc");
+        if(uniqueValue!=null){//说明是来初始化的
+            query.put(uniqueField,uniqueValue);
+            list = competitionService.getModelList(query);
+        }else {//正常搜索
+            if(ListUtil.isBlank(list)){
+                query.put("competitionNameFirst",keyword);
+                list = competitionService.getModelList(query);
+                query.remove("competitionNameFirst");
+            }
+            if(ListUtil.isBlank(list)){
+                query.put("userIdFirst",keyword);
+                list = competitionService.getModelList(query);
+                query.remove("userIdFirst");
+            }
+        }
+        return new ResponseMsg(list);
+    }
     //分页查询
     @RequestMapping(value={"page"}, method={RequestMethod.GET})
     public ResponseMsg page(
-        @RequestParam(required = false,value ="competitionIdFirst")                            Long competitionIdFirst ,
-        @RequestParam(required = false,value ="enrollDatetimeBeginFirst")                    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")Date enrollDatetimeBeginFirst ,
-        @RequestParam(required = false,value ="enrollDatetimeBeginSecond")                    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")Date enrollDatetimeBeginSecond ,
-        @RequestParam(required = false,value ="enrollDatetimeEndFirst")                    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")Date enrollDatetimeEndFirst ,
-        @RequestParam(required = false,value ="enrollDatetimeEndSecond")                    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")Date enrollDatetimeEndSecond ,
-        @RequestParam(required = false,value ="productDatetimeEndFirst")                    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")Date productDatetimeEndFirst ,
-        @RequestParam(required = false,value ="productDatetimeEndSecond")                    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")Date productDatetimeEndSecond ,
-        @RequestParam(required = false,value ="judgeDatetimeEndFirst")                    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")Date judgeDatetimeEndFirst ,
-        @RequestParam(required = false,value ="judgeDatetimeEndSecond")                    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")Date judgeDatetimeEndSecond ,
+        @RequestParam(required = false,value ="competitionNameFirst")                            String competitionNameFirst ,
         @RequestParam(required = false,value ="userIdFirst")                            Long userIdFirst ,
         @RequestParam int page,@RequestParam int limit,@RequestParam(required = false) String safeOrderBy)
     {
         limit = Math.min(limit, PageConstant.MAX_LIMIT);
         int start = (page - 1) * limit;
         Map<String,Object> query = new HashedMap();
-        query.put("competitionIdFirst",competitionIdFirst);
-        query.put("enrollDatetimeBeginFirst",enrollDatetimeBeginFirst);
-        query.put("enrollDatetimeBeginSecond",enrollDatetimeBeginSecond);
-        query.put("enrollDatetimeEndFirst",enrollDatetimeEndFirst);
-        query.put("enrollDatetimeEndSecond",enrollDatetimeEndSecond);
-        query.put("productDatetimeEndFirst",productDatetimeEndFirst);
-        query.put("productDatetimeEndSecond",productDatetimeEndSecond);
-        query.put("judgeDatetimeEndFirst",judgeDatetimeEndFirst);
-        query.put("judgeDatetimeEndSecond",judgeDatetimeEndSecond);
+        query.put("competitionNameFirst",coverBlankToNull(competitionNameFirst));
         query.put("userIdFirst",userIdFirst);
         Integer count = competitionService.getModelListCount(query);
         query.put("start",start);

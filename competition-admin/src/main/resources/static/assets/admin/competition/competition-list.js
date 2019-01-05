@@ -7,6 +7,20 @@
 layui.config({base : "assets/"}).extend({"competition_config":"admin/competition/competition-config","magicalcoderlist" : "magicalcoder/v001/rmp/magicalcoderlist"})
 layui.use(["magicalcoderlist","competition_config"],function(){
     var config = $.extend(layui.competition_config,{
+        childrenPage:[
+            {
+                tabTitle:"参赛队伍表",
+                url:"admin/page/team/list",
+                mcForeignName:"competitionId"
+            },            {
+                tabTitle:"竞赛评定人员表",
+                url:"admin/page/judge_user/list",
+                mcForeignName:"competitionId"
+            },            {
+                tabTitle:"作品表",
+                url:"admin/page/product/list",
+                mcForeignName:"competitionId"
+            }        ],
         layTable : {
             //表格内容
             elem : '#newsList',

@@ -17,6 +17,12 @@
             <input type="text" disabled="true" class="layui-input" name="productId"  placeholder="主键自动生成，无需手动编辑,如果重置则变成增加数据"/>
         </div>
     </div>
+    <div class="layui-form-item layui-row layui-col-xs12 security_edit_form_param_competitionId">
+        <label class="layui-form-label">作品所属的竞赛</label>
+        <div class="layui-input-block">
+            <select name="competitionId"  data-url="admin/competition_rest/search" data-id="competitionId" data-text-fields="competitionName,userId" class="magicalcoder-foreign-select2 layui-input" lay-ignore="true" lay-verify="magicalCoderVerify" magicalcoder-verify="" data-value=""  placeholder="作品所属的竞赛"><option value=""></option></select>
+        </div>
+    </div>
     <div class="layui-form-item layui-row layui-col-xs12 security_edit_form_param_productName">
         <label class="layui-form-label">作品名称</label>
         <div class="layui-input-block">
@@ -26,13 +32,7 @@
     <div class="layui-form-item layui-row layui-col-xs12 security_edit_form_param_productTeam">
         <label class="layui-form-label">作品所属队伍</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input" name="productTeam" placeholder="请输入作品所属队伍" lay-verify="magicalCoderVerify" magicalcoder-verify="" value="" />
-        </div>
-    </div>
-    <div class="layui-form-item layui-row layui-col-xs12 security_edit_form_param_productMaterial">
-        <label class="layui-form-label">作品相关材料</label>
-        <div class="layui-input-block">
-            <input type="text" class="layui-input" name="productMaterial" placeholder="请输入作品相关材料" lay-verify="magicalCoderVerify" magicalcoder-verify="" value="" disabled="true"/>
+            <select name="productTeam"  data-url="admin/team_rest/search" data-id="teamId" data-text-fields="teamName" class="magicalcoder-foreign-select2 layui-input" lay-ignore="true" lay-verify="magicalCoderVerify" magicalcoder-verify="" data-value=""  placeholder="作品所属队伍"><option value=""></option></select>
         </div>
     </div>
 

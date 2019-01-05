@@ -14,7 +14,7 @@ layui.use(["magicalcoderlist","productmaterial_config"],function(){
             },
             //排序跟数据库实际字段名的映射
         sortMap:{
-            productMaterialId:'product_material_id',productId:'product_id',dictId:'dict_id',productFile:'product_file'
+            productMaterialId:'product_material_id',productId:'product_id',dictId:'dict_id',productFile:'product_file',competitionId:'competition_id'
         }
     });
     var  magicalcoderlist = layui.magicalcoderlist(config);
@@ -24,12 +24,12 @@ layui.use(["magicalcoderlist","productmaterial_config"],function(){
     var cols = [[
         {type: "checkbox", fixed:"left", width:50},
                 {field: 'productMaterialId', title: '参赛材料唯一标识', minWidth:100, align:"center",sort:true},
-
-            {field: 'productId', title: '材料所属产品ID', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ magicalcoderlist.escapeHTML(d.productId) +'" class="magicalcoder-table-text layui-input security_list_table_form_productId" name="productId" data-identify="'+d.productMaterialId+'" lay-verify="magicalCoderVerify" magicalcoder-verify=""  placeholder="材料所属产品ID"/>'
-                }
-                , sort:true
-            },
+                {field: 'productId', title: '竞赛作品', align:'center', minWidth:250, templet:function (d) {
+                    var value = (!d.productId || d.productId==null) ? '' : d.productId
+                    var option = '<option selected="selected" value="'+value+'">'+value+'</option>'
+                    return '<select class="magicalcoder-table-foreign-select2 layui-input security_list_table_form_productId" lay-ignore="true"  name="productId" data-identify="'+d.productMaterialId+'" data-value="" data-url="admin/product_rest/search" data-id="productId" data-text-fields="productName" lay-verify="magicalCoderVerify" magicalcoder-verify=""  placeholder="竞赛作品">'+option+'</select>'
+                    },sort:true
+                },
 
             {field: 'dictId', title: '材料字典id', minWidth:200,templet:function (d) {
                     return '<input type="text" value="'+ magicalcoderlist.escapeHTML(d.dictId) +'" class="magicalcoder-table-text layui-input security_list_table_form_dictId" name="dictId" data-identify="'+d.productMaterialId+'" lay-verify="magicalCoderVerify" magicalcoder-verify=""  placeholder="材料字典id"/>'
@@ -39,6 +39,12 @@ layui.use(["magicalcoderlist","productmaterial_config"],function(){
 
             {field: 'productFile', title: '材料文件', minWidth:200,templet:function (d) {
                     return '<input type="text" value="'+ magicalcoderlist.escapeHTML(d.productFile) +'" class="magicalcoder-table-text layui-input security_list_table_form_productFile" name="productFile" data-identify="'+d.productMaterialId+'" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify=""  placeholder="材料文件"/>'
+                }
+                , sort:true
+            },
+
+            {field: 'competitionId', title: '所属竞赛', minWidth:200,templet:function (d) {
+                    return '<input type="text" value="'+ magicalcoderlist.escapeHTML(d.competitionId) +'" class="magicalcoder-table-text layui-input security_list_table_form_competitionId" name="competitionId" data-identify="'+d.productMaterialId+'" lay-verify="magicalCoderVerify" magicalcoder-verify=""  placeholder="所属竞赛"/>'
                 }
                 , sort:true
             },

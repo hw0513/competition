@@ -34,20 +34,44 @@ public class AdminProductRestController extends CommonRestController<Product,Lon
     @Resource
     private ProductService productService;
 
+    @RequestMapping(value = "search")
+    public ResponseMsg search(
+        @RequestParam(required = false) String uniqueField,
+        @RequestParam(required = false) Long uniqueValue,
+        @RequestParam(required = false,defaultValue = "20") Integer limit,
+        @RequestParam(required = false) String keyword
+    ){
+        limit = Math.min(PageConstant.MAX_LIMIT,limit);
+        List<Product> list = null;
+        Map<String,Object> query = new HashedMap();
+        query.put("limit",limit);
+        query.put("notSafeOrderBy","product_id desc");
+        if(uniqueValue!=null){//说明是来初始化的
+            query.put(uniqueField,uniqueValue);
+            list = productService.getModelList(query);
+        }else {//正常搜索
+            if(ListUtil.isBlank(list)){
+                query.put("productNameFirst",keyword);
+                list = productService.getModelList(query);
+                query.remove("productNameFirst");
+            }
+        }
+        return new ResponseMsg(list);
+    }
     //分页查询
     @RequestMapping(value={"page"}, method={RequestMethod.GET})
     public ResponseMsg page(
-        @RequestParam(required = false,value ="productNameFirst")                            String productNameFirst ,
+        @RequestParam(required = false,value ="competitionIdFirst")                            Long competitionIdFirst ,
         @RequestParam(required = false,value ="productTeamFirst")                            Long productTeamFirst ,
-        @RequestParam(required = false,value ="productMaterialFirst")                            Long productMaterialFirst ,
+        @RequestParam(required = false,value ="productNameFirst")                            String productNameFirst ,
         @RequestParam int page,@RequestParam int limit,@RequestParam(required = false) String safeOrderBy)
     {
         limit = Math.min(limit, PageConstant.MAX_LIMIT);
         int start = (page - 1) * limit;
         Map<String,Object> query = new HashedMap();
-        query.put("productNameFirst",coverBlankToNull(productNameFirst));
+        query.put("competitionIdFirst",competitionIdFirst);
         query.put("productTeamFirst",productTeamFirst);
-        query.put("productMaterialFirst",productMaterialFirst);
+        query.put("productNameFirst",coverBlankToNull(productNameFirst));
         Integer count = productService.getModelListCount(query);
         query.put("start",start);
         query.put("limit",limit);

@@ -19,8 +19,8 @@ function getLangDate(){
     var second = dateObj.getSeconds(); //当前系统时间的秒钟值
     var timeValue = "" +((hour >= 12) ? (hour >= 18) ? "晚上" : "下午" : "上午" ); //当前时间属于上午、晚上还是下午
     newDate = dateFilter(year)+"年"+dateFilter(month)+"月"+dateFilter(date)+"日 "+" "+dateFilter(hour)+":"+dateFilter(minute)+":"+dateFilter(second);
-    document.getElementById("nowTime").innerHTML = "亲爱的用户，"+timeValue+"好！欢迎使用youyaboot, 此为正式版v1.0.0，更多完善的功能正在开发中，您所见到的功能都是MagicalCoder自动生成。" +
-        "友情提示：sys开头的系统模块的功能为工具(90%)+人工(10%)一起开发，请不要使用工具重新生成并覆盖，否则权限系统将无法正常使用。开始享受您的自动编码时光吧！当前时间为： "+newDate+"　"+week;
+    document.getElementById("nowTime").innerHTML = "亲爱的用户，"+timeValue+"好！欢迎使用四川工商学院学科竞赛管理系统。" +
+        "系统当前时间为： "+newDate+"　"+week;
     setTimeout("getLangDate()",1000);
 }
 

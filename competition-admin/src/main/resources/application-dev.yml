@@ -52,5 +52,5 @@ magicalcoder:
           uploadDiskFolder:
           #虚拟访问映射地址 请尽量不要改动 AdminCommonFileRestController里面有根据这个返回给前端 /.*/格式 最后1个/别忘记了
           requestPrefix: /upload/
-  #超级管理员账号名称 密码默认：magicalcoder
-  superUserName: magicalcoder
+  #超级管理员账号名称 密码默认：admin
+  superUserName: admin

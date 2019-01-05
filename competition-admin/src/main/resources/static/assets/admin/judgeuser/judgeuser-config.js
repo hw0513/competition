@@ -7,18 +7,15 @@
 layui.define(['jquery'],function(exports){
     var obj =
         {
-            tableNameRest:"product_material_rest",
-            tableName:"product_material",
-            moduleName:"product_material",//sys_module的moduleName
+            tableNameRest:"judge_user_rest",
+            tableName:"judge_user",
+            moduleName:"judge_user",//sys_module的moduleName
             formVerifyEditData:{//详情页提交时表单校验 使用方法参考layui官网 表单验证规则
 
             },
             form:{
 
-              productFile:{
-                        renderConfig:{"auto":true,"acceptMime":"images","multiple":false,"inputType":"imgfile","drag":true,"exts":"jpg|png|gif|bmp|jpeg","accept":"images"}
-                    }
             }
         }
-    exports('productmaterial_config',obj);
+    exports('judgeuser_config',obj);
 })

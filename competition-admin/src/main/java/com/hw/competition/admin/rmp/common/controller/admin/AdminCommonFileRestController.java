@@ -4,7 +4,6 @@ import com.hw.competition.admin.common.config.UploadFilePathConfig;
 import com.hw.competition.core.serialize.CommonReturnCode;
 import com.hw.competition.core.serialize.ResponseMsg;
 import com.hw.competition.core.utils.MapUtil;
-import org.apache.commons.io.FileUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,8 +53,8 @@ public class AdminCommonFileRestController {
                 String newFileName = df.format(new Timestamp(System.currentTimeMillis())) + "_"
                         + (int) (Math.random() * 900000 + 100000) + suffix;
                 File storeFile = new File(realPath, newFileName);
-                /*FileUtils.copyInputStreamToFile(
-                        myfile.getInputStream(), storeFile);//上传文件到磁盘*/
+                //上传文件到磁盘
+                myfile.transferTo(storeFile);
                 String prefix = uploadFilePathConfig.getRequestPrefix();
                 if(prefix.startsWith("/")){
                     prefix = prefix.replaceFirst("/","");

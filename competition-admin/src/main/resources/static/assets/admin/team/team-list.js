@@ -7,6 +7,12 @@
 layui.config({base : "assets/"}).extend({"team_config":"admin/team/team-config","magicalcoderlist" : "magicalcoder/v001/rmp/magicalcoderlist"})
 layui.use(["magicalcoderlist","team_config"],function(){
     var config = $.extend(layui.team_config,{
+        childrenPage:[
+            {
+                tabTitle:"作品表",
+                url:"admin/page/product/list",
+                mcForeignName:"productTeam"
+            }        ],
         layTable : {
             //表格内容
             elem : '#newsList',
@@ -14,7 +20,7 @@ layui.use(["magicalcoderlist","team_config"],function(){
             },
             //排序跟数据库实际字段名的映射
         sortMap:{
-            teamId:'team_id',teamName:'team_name',studentId:'student_id',competitionId:'competition_id'
+            teamId:'team_id',teamName:'team_name',studentId:'student_id'
         }
     });
     var  magicalcoderlist = layui.magicalcoderlist(config);
@@ -25,20 +31,14 @@ layui.use(["magicalcoderlist","team_config"],function(){
         {type: "checkbox", fixed:"left", width:50},
                 {field: 'teamId', title: 'team_id', minWidth:100, align:"center",sort:true},
 
-            {field: 'teamName', title: 'team_name', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ magicalcoderlist.escapeHTML(d.teamName) +'" class="magicalcoder-table-text layui-input security_list_table_form_teamName" name="teamName" data-identify="'+d.teamId+'" lay-verify="magicalCoderVerify" magicalcoder-verify=""  placeholder="team_name"/>'
+            {field: 'teamName', title: '队伍名称', minWidth:200,templet:function (d) {
+                    return '<input type="text" value="'+ magicalcoderlist.escapeHTML(d.teamName) +'" class="magicalcoder-table-text layui-input security_list_table_form_teamName" name="teamName" data-identify="'+d.teamId+'" lay-verify="magicalCoderVerify" magicalcoder-verify=""  placeholder="队伍民称"/>'
                 }
                 , sort:true
             },
 
             {field: 'studentId', title: '队伍成员', minWidth:200,templet:function (d) {
                     return '<input type="text" value="'+ magicalcoderlist.escapeHTML(d.studentId) +'" class="magicalcoder-table-text layui-input security_list_table_form_studentId" name="studentId" data-identify="'+d.teamId+'" lay-verify="magicalCoderVerify" magicalcoder-verify=""  placeholder="队伍成员"/>'
-                }
-                , sort:true
-            },
-
-            {field: 'competitionId', title: '竞赛Id', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ magicalcoderlist.escapeHTML(d.competitionId) +'" class="magicalcoder-table-text layui-input security_list_table_form_competitionId" name="competitionId" data-identify="'+d.teamId+'" lay-verify="magicalCoderVerify" magicalcoder-verify=""  placeholder="竞赛Id"/>'
                 }
                 , sort:true
             },

@@ -15,14 +15,14 @@
                         <input type="text" class="layui-input" data-name="productName" name="productNameFirst" placeholder="作品名称" />
                     </div>
                 </div>
-                <div class="layui-inline security_list_query_param_productTeam">
+                <div class="layui-inline security_list_query_param_competitionId">
                     <div class="layui-input-inline">
-                        <input type="text" class="layui-input" data-name="productTeam" name="productTeamFirst" placeholder="作品所属队伍" />
+                        <select  data-name="competitionId" class="magicalcoder-foreign-select2 layui-input" lay-ignore="true" name="competitionIdFirst" style="height:30px;width: 200px" data-url="admin/competition_rest/search" data-id="competitionId" data-text-fields="competitionName,userId" placeholder="作品所属的竞赛"><option value=""></option></select>
                     </div>
                 </div>
-                <div class="layui-inline security_list_query_param_productMaterial">
+                <div class="layui-inline security_list_query_param_productTeam">
                     <div class="layui-input-inline">
-                        <input type="text" class="layui-input" data-name="productMaterial" name="productMaterialFirst" placeholder="作品相关材料" />
+                        <select  data-name="productTeam" class="magicalcoder-foreign-select2 layui-input" lay-ignore="true" name="productTeamFirst" style="height:30px;width: 200px" data-url="admin/team_rest/search" data-id="teamId" data-text-fields="teamName" placeholder="作品所属队伍"><option value=""></option></select>
                     </div>
                 </div>
                 <div class="layui-inline security_list_query_operate_search">
@@ -41,6 +41,7 @@
         <!--操作-->
         <script type="text/html" id="newsListOperateTemplate">
             <a class="layui-btn layui-btn-sm security_list_table_operate_edit" lay-event="edit">编辑</a>
+            <a class="layui-btn layui-btn-sm security_list_table_operate_children" lay-event="children">参赛材料表</a>
             <a class="layui-btn layui-btn-sm layui-btn-danger security_list_table_operate_del" lay-event="del">删除</a>
         </script>
     </form>

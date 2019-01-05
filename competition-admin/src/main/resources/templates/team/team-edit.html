@@ -14,13 +14,13 @@
     <div class="layui-form-item layui-row layui-col-xs12 security_edit_form_param_teamId">
         <label class="layui-form-label">team_id</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input" name="teamId"  placeholder="team_id请保证唯一，如果已存在则会覆盖，如果不填写则新增"/>
+            <input type="text" disabled="true" class="layui-input" name="teamId"  placeholder="主键自动生成，无需手动编辑,如果重置则变成增加数据"/>
         </div>
     </div>
     <div class="layui-form-item layui-row layui-col-xs12 security_edit_form_param_teamName">
-        <label class="layui-form-label">team_name</label>
+        <label class="layui-form-label">队伍名称</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input" name="teamName" placeholder="请输入team_name" lay-verify="magicalCoderVerify" magicalcoder-verify="" value="" />
+            <input type="text" class="layui-input" name="teamName" placeholder="请输入队伍名称" lay-verify="magicalCoderVerify" magicalcoder-verify="" value="" />
         </div>
     </div>
     <div class="layui-form-item layui-row layui-col-xs12 security_edit_form_param_studentId">
@@ -30,9 +30,9 @@
         </div>
     </div>
     <div class="layui-form-item layui-row layui-col-xs12 security_edit_form_param_competitionId">
-        <label class="layui-form-label">竞赛Id</label>
+        <label class="layui-form-label">竞赛名称</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input" name="competitionId" placeholder="请输入竞赛Id" lay-verify="magicalCoderVerify" magicalcoder-verify="" value="" />
+            <select name="competitionId"  data-url="admin/competition_rest/search" data-id="competitionId" data-text-fields="competitionName" class="magicalcoder-foreign-select2 layui-input" lay-ignore="true" lay-verify="magicalCoderVerify" magicalcoder-verify="" data-value=""  placeholder="竞赛Id"><option value=""></option></select>
         </div>
     </div>
 

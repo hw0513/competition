@@ -24,6 +24,7 @@ public class AdminRmpController {
         SysAdminUserDto adminUser = AdminUtil.getAdmin();
         SysRoleDto role = adminUser.getSysRoleDto();
         modelMap.addAttribute("categoryList",role.getSysModuleCategoryDtoList());
+        modelMap.addAttribute("user",adminUser);
         return "index";
     }
 

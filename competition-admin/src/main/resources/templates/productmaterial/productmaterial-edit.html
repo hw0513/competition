@@ -14,13 +14,13 @@
     <div class="layui-form-item layui-row layui-col-xs12 security_edit_form_param_productMaterialId">
         <label class="layui-form-label">参赛材料唯一标识</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input" name="productMaterialId"  placeholder="参赛材料唯一标识请保证唯一，如果已存在则会覆盖，如果不填写则新增"/>
+            <input type="text" disabled="true" class="layui-input" name="productMaterialId"  placeholder="主键自动生成，无需手动编辑,如果重置则变成增加数据"/>
         </div>
     </div>
     <div class="layui-form-item layui-row layui-col-xs12 security_edit_form_param_productId">
-        <label class="layui-form-label">材料所属产品ID</label>
+        <label class="layui-form-label">竞赛作品</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input" name="productId" placeholder="请输入材料所属产品ID" lay-verify="magicalCoderVerify" magicalcoder-verify="" value="" />
+            <select name="productId"  data-url="admin/product_rest/search" data-id="productId" data-text-fields="productName" class="magicalcoder-foreign-select2 layui-input" lay-ignore="true" lay-verify="magicalCoderVerify" magicalcoder-verify="" data-value=""  placeholder="竞赛作品"><option value=""></option></select>
         </div>
     </div>
     <div class="layui-form-item layui-row layui-col-xs12 security_edit_form_param_dictId">
@@ -32,7 +32,19 @@
     <div class="layui-form-item layui-row layui-col-xs12 security_edit_form_param_productFile">
         <label class="layui-form-label">材料文件</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input" name="productFile" placeholder="请输入材料文件" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="" value="" />
+            <a class="layui-btn a_productFile " >
+                <i class="layui-icon" >&#xe67c;</i>上传文件或图片
+            </a>
+            <input class="magicalcoder-layupload layui-input" name="productFile" type="text" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="" value=""  placeholder="材料文件"/>
+            <div class="layui-upload-list">
+                <img class="layui-textarea layui-upload-img img_productFile" />
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item layui-row layui-col-xs12 security_edit_form_param_competitionId">
+        <label class="layui-form-label">所属竞赛</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" name="competitionId" placeholder="请输入所属竞赛" lay-verify="magicalCoderVerify" magicalcoder-verify="" value="" />
         </div>
     </div>
 

@@ -10,45 +10,9 @@
     <form class="layui-form queryForm">
         <blockquote class="layui-elem-quote quoteBox security_list_query_form">
             <form class="layui-form-item"><!--注意这个form最终会被layui删除-->
-                <div class="layui-inline security_list_query_param_competitionId">
+                <div class="layui-inline security_list_query_param_competitionName">
                     <div class="layui-input-inline">
-                        <input type="text" class="layui-input" data-name="competitionId" name="competitionIdFirst" placeholder="竞赛id" />
-                    </div>
-                </div>
-                <div class="layui-inline security_list_query_param_enrollDatetimeBegin">
-                    <div class="layui-input-inline" >
-                        <input type="text" data-name="enrollDatetimeBegin" name="enrollDatetimeBeginFirst" lay-verify="datetime"  placeholder="起始竞赛截止开始报名时间" autocomplete="off" class="magicalcoder-laydate layui-input"/>
-                    </div>
-                    <div class="layui-input-inline">-</div>
-                    <div class="layui-input-inline" >
-                        <input type="text" data-name="enrollDatetimeBegin"  name="enrollDatetimeBeginSecond" lay-verify="datetime"  placeholder="终止竞赛截止开始报名时间" autocomplete="off" class="magicalcoder-laydate layui-input"/>
-                    </div>
-                </div>
-                <div class="layui-inline security_list_query_param_enrollDatetimeEnd">
-                    <div class="layui-input-inline" >
-                        <input type="text" data-name="enrollDatetimeEnd" name="enrollDatetimeEndFirst" lay-verify="datetime"  placeholder="起始竞赛截止报名时间" autocomplete="off" class="magicalcoder-laydate layui-input"/>
-                    </div>
-                    <div class="layui-input-inline">-</div>
-                    <div class="layui-input-inline" >
-                        <input type="text" data-name="enrollDatetimeEnd"  name="enrollDatetimeEndSecond" lay-verify="datetime"  placeholder="终止竞赛截止报名时间" autocomplete="off" class="magicalcoder-laydate layui-input"/>
-                    </div>
-                </div>
-                <div class="layui-inline security_list_query_param_productDatetimeEnd">
-                    <div class="layui-input-inline" >
-                        <input type="text" data-name="productDatetimeEnd" name="productDatetimeEndFirst" lay-verify="datetime"  placeholder="起始作品提交截止时间" autocomplete="off" class="magicalcoder-laydate layui-input"/>
-                    </div>
-                    <div class="layui-input-inline">-</div>
-                    <div class="layui-input-inline" >
-                        <input type="text" data-name="productDatetimeEnd"  name="productDatetimeEndSecond" lay-verify="datetime"  placeholder="终止作品提交截止时间" autocomplete="off" class="magicalcoder-laydate layui-input"/>
-                    </div>
-                </div>
-                <div class="layui-inline security_list_query_param_judgeDatetimeEnd">
-                    <div class="layui-input-inline" >
-                        <input type="text" data-name="judgeDatetimeEnd" name="judgeDatetimeEndFirst" lay-verify="datetime"  placeholder="起始作品评定截止时间" autocomplete="off" class="magicalcoder-laydate layui-input"/>
-                    </div>
-                    <div class="layui-input-inline">-</div>
-                    <div class="layui-input-inline" >
-                        <input type="text" data-name="judgeDatetimeEnd"  name="judgeDatetimeEndSecond" lay-verify="datetime"  placeholder="终止作品评定截止时间" autocomplete="off" class="magicalcoder-laydate layui-input"/>
+                        <input type="text" class="layui-input" data-name="competitionName" name="competitionNameFirst" placeholder="竞赛名称" />
                     </div>
                 </div>
                 <div class="layui-inline security_list_query_param_userId">
@@ -84,6 +48,7 @@
         <!--操作-->
         <script type="text/html" id="newsListOperateTemplate">
             <a class="layui-btn layui-btn-sm security_list_table_operate_edit" lay-event="edit">编辑</a>
+            <a class="layui-btn layui-btn-sm security_list_table_operate_children" lay-event="children">更多信息</a>
             <a class="layui-btn layui-btn-sm layui-btn-danger security_list_table_operate_del" lay-event="del">删除</a>
         </script>
     </form>

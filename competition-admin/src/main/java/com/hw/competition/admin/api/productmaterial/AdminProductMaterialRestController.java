@@ -37,19 +37,15 @@ public class AdminProductMaterialRestController extends CommonRestController<Pro
     //分页查询
     @RequestMapping(value={"page"}, method={RequestMethod.GET})
     public ResponseMsg page(
-        @RequestParam(required = false,value ="productMaterialIdFirst")                            Long productMaterialIdFirst ,
         @RequestParam(required = false,value ="productIdFirst")                            Long productIdFirst ,
-        @RequestParam(required = false,value ="dictIdFirst")                            Long dictIdFirst ,
-        @RequestParam(required = false,value ="productFileFirst")                            String productFileFirst ,
+        @RequestParam(required = false,value ="competitionIdFirst")                            Long competitionIdFirst ,
         @RequestParam int page,@RequestParam int limit,@RequestParam(required = false) String safeOrderBy)
     {
         limit = Math.min(limit, PageConstant.MAX_LIMIT);
         int start = (page - 1) * limit;
         Map<String,Object> query = new HashedMap();
-        query.put("productMaterialIdFirst",productMaterialIdFirst);
         query.put("productIdFirst",productIdFirst);
-        query.put("dictIdFirst",dictIdFirst);
-        query.put("productFileFirst",coverBlankToNull(productFileFirst));
+        query.put("competitionIdFirst",competitionIdFirst);
         Integer count = productMaterialService.getModelListCount(query);
         query.put("start",start);
         query.put("limit",limit);

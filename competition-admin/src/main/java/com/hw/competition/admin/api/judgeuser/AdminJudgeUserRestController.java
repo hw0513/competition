@@ -1,4 +1,4 @@
-package com.hw.competition.admin.api.student;
+package com.hw.competition.admin.api.judgeuser;
 
 import com.hw.competition.core.service.CommonRestController;
 import org.springframework.beans.factory.InitializingBean;
@@ -12,8 +12,8 @@ import java.util.Map;
 import com.hw.competition.core.common.constant.PageConstant;
 import com.hw.competition.core.common.exception.BusinessException;
 import com.hw.competition.core.serialize.ResponseMsg;
-import com.hw.competition.model.Student;
-import com.hw.competition.service.student.service.StudentService;
+import com.hw.competition.model.JudgeUser;
+import com.hw.competition.service.judgeuser.service.JudgeUserService;
 
 import com.hw.competition.core.utils.ListUtil;
 import com.hw.competition.core.utils.MapUtil;
@@ -26,42 +26,38 @@ import com.hw.competition.core.utils.StringUtil;
 * 欢迎加入官方QQ群:323237052
 */
 
-@RequestMapping("/admin/student_rest/")
+@RequestMapping("/admin/judge_user_rest/")
 @RestController
-public class AdminStudentRestController extends CommonRestController<Student,Long> implements InitializingBean
+public class AdminJudgeUserRestController extends CommonRestController<JudgeUser,Long> implements InitializingBean
 {
 
     @Resource
-    private StudentService studentService;
+    private JudgeUserService judgeUserService;
 
     //分页查询
     @RequestMapping(value={"page"}, method={RequestMethod.GET})
     public ResponseMsg page(
-        @RequestParam(required = false,value ="idNumberFirst")                            String idNumberFirst ,
-        @RequestParam(required = false,value ="classNameFirst")                            String classNameFirst ,
-        @RequestParam(required = false,value ="schoolNumberFirst")                            String schoolNumberFirst ,
+        @RequestParam(required = false,value ="competitionIdFirst")                            Long competitionIdFirst ,
         @RequestParam int page,@RequestParam int limit,@RequestParam(required = false) String safeOrderBy)
     {
         limit = Math.min(limit, PageConstant.MAX_LIMIT);
         int start = (page - 1) * limit;
         Map<String,Object> query = new HashedMap();
-        query.put("idNumberFirst",coverBlankToNull(idNumberFirst));
-        query.put("classNameFirst",coverBlankToNull(classNameFirst));
-        query.put("schoolNumberFirst",coverBlankToNull(schoolNumberFirst));
-        Integer count = studentService.getModelListCount(query);
+        query.put("competitionIdFirst",competitionIdFirst);
+        Integer count = judgeUserService.getModelListCount(query);
         query.put("start",start);
         query.put("limit",limit);
         if(StringUtil.isBlank(safeOrderBy)){
-            query.put("notSafeOrderBy","student_id desc");
+            query.put("notSafeOrderBy","judge_user_id desc");
         }else{
             query.put("safeOrderBy",safeOrderBy);
         }
-        return new ResponseMsg(count,studentService.getModelList(query));
+        return new ResponseMsg(count,judgeUserService.getModelList(query));
     }
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        super.commonService = studentService;
-        super.primaryKey = "studentId";//硬编码此实体的主键名称
+        super.commonService = judgeUserService;
+        super.primaryKey = "judgeUserId";//硬编码此实体的主键名称
     }
 }

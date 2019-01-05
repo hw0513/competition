@@ -10,24 +10,14 @@
     <form class="layui-form queryForm">
         <blockquote class="layui-elem-quote quoteBox security_list_query_form">
             <form class="layui-form-item"><!--注意这个form最终会被layui删除-->
-                <div class="layui-inline security_list_query_param_teamId">
+                <div class="layui-inline security_list_query_param_competitionId">
                     <div class="layui-input-inline">
-                        <input type="text" class="layui-input" data-name="teamId" name="teamIdFirst" placeholder="team_id" />
+                        <select  data-name="competitionId" class="magicalcoder-foreign-select2 layui-input" lay-ignore="true" name="competitionIdFirst" style="height:30px;width: 200px" data-url="admin/competition_rest/search" data-id="competitionId" data-text-fields="competitionName" placeholder="竞赛名称"><option value=""></option></select>
                     </div>
                 </div>
                 <div class="layui-inline security_list_query_param_teamName">
                     <div class="layui-input-inline">
-                        <input type="text" class="layui-input" data-name="teamName" name="teamNameFirst" placeholder="team_name" />
-                    </div>
-                </div>
-                <div class="layui-inline security_list_query_param_studentId">
-                    <div class="layui-input-inline">
-                        <input type="text" class="layui-input" data-name="studentId" name="studentIdFirst" placeholder="队伍成员" />
-                    </div>
-                </div>
-                <div class="layui-inline security_list_query_param_competitionId">
-                    <div class="layui-input-inline">
-                        <input type="text" class="layui-input" data-name="competitionId" name="competitionIdFirst" placeholder="竞赛Id" />
+                        <input type="text" class="layui-input" data-name="teamName" name="teamNameFirst" placeholder="队伍名称" />
                     </div>
                 </div>
                 <div class="layui-inline security_list_query_operate_search">
@@ -46,6 +36,7 @@
         <!--操作-->
         <script type="text/html" id="newsListOperateTemplate">
             <a class="layui-btn layui-btn-sm security_list_table_operate_edit" lay-event="edit">编辑</a>
+            <a class="layui-btn layui-btn-sm security_list_table_operate_children" lay-event="children">作品表</a>
             <a class="layui-btn layui-btn-sm layui-btn-danger security_list_table_operate_del" lay-event="del">删除</a>
         </script>
     </form>

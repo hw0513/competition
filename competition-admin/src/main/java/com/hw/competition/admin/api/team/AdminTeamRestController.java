@@ -34,21 +34,41 @@ public class AdminTeamRestController extends CommonRestController<Team,Long> imp
     @Resource
     private TeamService teamService;
 
+    @RequestMapping(value = "search")
+    public ResponseMsg search(
+        @RequestParam(required = false) String uniqueField,
+        @RequestParam(required = false) Long uniqueValue,
+        @RequestParam(required = false,defaultValue = "20") Integer limit,
+        @RequestParam(required = false) String keyword
+    ){
+        limit = Math.min(PageConstant.MAX_LIMIT,limit);
+        List<Team> list = null;
+        Map<String,Object> query = new HashedMap();
+        query.put("limit",limit);
+        query.put("notSafeOrderBy","team_id desc");
+        if(uniqueValue!=null){//说明是来初始化的
+            query.put(uniqueField,uniqueValue);
+            list = teamService.getModelList(query);
+        }else {//正常搜索
+            if(ListUtil.isBlank(list)){
+                query.put("teamNameFirst",keyword);
+                list = teamService.getModelList(query);
+                query.remove("teamNameFirst");
+            }
+        }
+        return new ResponseMsg(list);
+    }
     //分页查询
     @RequestMapping(value={"page"}, method={RequestMethod.GET})
     public ResponseMsg page(
-        @RequestParam(required = false,value ="teamIdFirst")                            Long teamIdFirst ,
         @RequestParam(required = false,value ="teamNameFirst")                            String teamNameFirst ,
-        @RequestParam(required = false,value ="studentIdFirst")                            Long studentIdFirst ,
         @RequestParam(required = false,value ="competitionIdFirst")                            Long competitionIdFirst ,
         @RequestParam int page,@RequestParam int limit,@RequestParam(required = false) String safeOrderBy)
     {
         limit = Math.min(limit, PageConstant.MAX_LIMIT);
         int start = (page - 1) * limit;
         Map<String,Object> query = new HashedMap();
-        query.put("teamIdFirst",teamIdFirst);
         query.put("teamNameFirst",coverBlankToNull(teamNameFirst));
-        query.put("studentIdFirst",studentIdFirst);
         query.put("competitionIdFirst",competitionIdFirst);
         Integer count = teamService.getModelListCount(query);
         query.put("start",start);

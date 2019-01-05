@@ -10,24 +10,14 @@
     <form class="layui-form queryForm">
         <blockquote class="layui-elem-quote quoteBox security_list_query_form">
             <form class="layui-form-item"><!--注意这个form最终会被layui删除-->
-                <div class="layui-inline security_list_query_param_productMaterialId">
-                    <div class="layui-input-inline">
-                        <input type="text" class="layui-input" data-name="productMaterialId" name="productMaterialIdFirst" placeholder="参赛材料唯一标识" />
-                    </div>
-                </div>
                 <div class="layui-inline security_list_query_param_productId">
                     <div class="layui-input-inline">
-                        <input type="text" class="layui-input" data-name="productId" name="productIdFirst" placeholder="材料所属产品ID" />
+                        <select  data-name="productId" class="magicalcoder-foreign-select2 layui-input" lay-ignore="true" name="productIdFirst" style="height:30px;width: 200px" data-url="admin/product_rest/search" data-id="productId" data-text-fields="productName" placeholder="竞赛作品"><option value=""></option></select>
                     </div>
                 </div>
-                <div class="layui-inline security_list_query_param_dictId">
+                <div class="layui-inline security_list_query_param_competitionId">
                     <div class="layui-input-inline">
-                        <input type="text" class="layui-input" data-name="dictId" name="dictIdFirst" placeholder="材料字典id" />
-                    </div>
-                </div>
-                <div class="layui-inline security_list_query_param_productFile">
-                    <div class="layui-input-inline">
-                        <input type="text" class="layui-input" data-name="productFile" name="productFileFirst" placeholder="材料文件" />
+                        <input type="text" class="layui-input" data-name="competitionId" name="competitionIdFirst" placeholder="所属竞赛" />
                     </div>
                 </div>
                 <div class="layui-inline security_list_query_operate_search">
