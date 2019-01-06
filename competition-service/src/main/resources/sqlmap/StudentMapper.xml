@@ -244,14 +244,11 @@
         <if test="idNumber!=null "> and `id_number` = #{idNumber}</if>
         <if test="className!=null "> and `class_name` = #{className}</if>
         <if test="schoolNumber!=null "> and `school_number` = #{schoolNumber}</if>
-                <if test="studentIdFirst!=null "> and `student_id` <![CDATA[=]]>
-                            #{studentIdFirst}
+                <if test="idNumberFirst!=null "> and `id_number` <![CDATA[like]]>
+                            concat('%',#{idNumberFirst},'%')
                 </if>
-                <if test="idNumberFirst!=null "> and `id_number` <![CDATA[=]]>
-                            #{idNumberFirst}
-                </if>
-                <if test="classNameFirst!=null "> and `class_name` <![CDATA[=]]>
-                            #{classNameFirst}
+                <if test="classNameFirst!=null "> and `class_name` <![CDATA[like]]>
+                            concat('%',#{classNameFirst},'%')
                 </if>
                 <if test="schoolNumberFirst!=null "> and `school_number` <![CDATA[=]]>
                             #{schoolNumberFirst}

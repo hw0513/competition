@@ -4,7 +4,6 @@ import com.hw.competition.admin.adminservice.demo.mapper.AdminServiceDemoMapper;
 import com.hw.competition.admin.adminservice.demo.service.AdminServiceDemoService;
 import com.hw.competition.admin.model.MyDemo;
 import com.hw.competition.core.utils.MapUtil;
-import com.hw.competition.model.Goods;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

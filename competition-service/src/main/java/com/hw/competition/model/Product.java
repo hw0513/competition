@@ -14,9 +14,9 @@ import lombok.Data;
 public class Product implements Serializable{
 
     private Long productId;//作品ID
-    private String productName;//作品名称
+    private Long competitionId;//作品所属的竞赛
     private Long productTeam;//作品所属队伍
-    private Long productMaterial;//作品相关材料
+    private String productName;//作品名称
 
 
     public Long getProductId(){
@@ -26,11 +26,11 @@ public class Product implements Serializable{
         this.productId = productId;
     }
 
-    public String getProductName(){
-        return productName;
+    public Long getCompetitionId(){
+        return competitionId;
     }
-    public void setProductName(String productName){
-        this.productName = productName;
+    public void setCompetitionId(Long competitionId){
+        this.competitionId = competitionId;
     }
 
     public Long getProductTeam(){
@@ -40,10 +40,10 @@ public class Product implements Serializable{
         this.productTeam = productTeam;
     }
 
-    public Long getProductMaterial(){
-        return productMaterial;
+    public String getProductName(){
+        return productName;
     }
-    public void setProductMaterial(Long productMaterial){
-        this.productMaterial = productMaterial;
+    public void setProductName(String productName){
+        this.productName = productName;
     }
 }

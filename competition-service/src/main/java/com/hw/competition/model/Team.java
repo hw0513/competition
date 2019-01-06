@@ -14,7 +14,7 @@ import lombok.Data;
 public class Team implements Serializable{
 
     private Long teamId;//team_id
-    private String teamName;//team_name
+    private String teamName;//队伍名称
     private Long studentId;//队伍成员
     private Long competitionId;//竞赛Id
 

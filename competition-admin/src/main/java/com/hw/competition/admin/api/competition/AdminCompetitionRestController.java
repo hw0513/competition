@@ -1,14 +1,11 @@
 package com.hw.competition.admin.api.competition;
 
 import com.hw.competition.core.service.CommonRestController;
-import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.InitializingBean;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -45,10 +42,7 @@ public class AdminCompetitionRestController extends CommonRestController<Competi
         @RequestParam(required = false) String uniqueField,
         @RequestParam(required = false) Long uniqueValue,
         @RequestParam(required = false,defaultValue = "20") Integer limit,
-        @RequestParam(required = false) String keyword,
-        HttpServletRequest request,
-        HttpSession session,
-        HttpResponse response
+        @RequestParam(required = false) String keyword
     ){
         limit = Math.min(PageConstant.MAX_LIMIT,limit);
         List<Competition> list = null;

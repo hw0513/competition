@@ -48,12 +48,12 @@ layui.use(["magicalcoderlist","competition_config"],function(){
             {field: 'enrollDatetimeEnd', title: '竞赛截止报名时间', align:'center', minWidth:250, templet :"#enrollDatetimeEndTemplate",sort:true},
             {field: 'productDatetimeEnd', title: '作品提交截止时间', align:'center', minWidth:250, templet :"#productDatetimeEndTemplate",sort:true},
             {field: 'judgeDatetimeEnd', title: '作品评定截止时间', align:'center', minWidth:250, templet :"#judgeDatetimeEndTemplate",sort:true},
-
-            {field: 'userId', title: '竞赛管理员', minWidth:200,templet:function (d) {
-                    return '<input type="text" value="'+ magicalcoderlist.escapeHTML(d.userId) +'" class="magicalcoder-table-text layui-input security_list_table_form_userId" name="userId" data-identify="'+d.competitionId+'" lay-verify="magicalCoderVerify" magicalcoder-verify=""  placeholder="竞赛管理员"/>'
-                }
-                , sort:true
-            },
+                {field: 'userId', title: '竞赛管理员', align:'center', minWidth:250, templet:function (d) {
+                    var value = (!d.userId || d.userId==null) ? '' : d.userId
+                    var option = '<option selected="selected" value="'+value+'">'+value+'</option>'
+                    return '<select class="magicalcoder-table-foreign-select2 layui-input security_list_table_form_userId" lay-ignore="true"  name="userId" data-identify="'+d.competitionId+'" data-value="" data-url="admin/sys_admin_user_rest/search" data-id="id" data-text-fields="username" lay-verify="magicalCoderVerify" magicalcoder-verify=""  placeholder="竞赛管理员">'+option+'</select>'
+                    },sort:true
+                },
         {title: '操作', minWidth:250, templet:'#newsListOperateTemplate',fixed:"right",align:"center"}
     ]];
     //表格中的一些事件

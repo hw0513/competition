@@ -244,14 +244,8 @@
         <if test="teamName!=null "> and `team_name` = #{teamName}</if>
         <if test="studentId!=null "> and `student_id` = #{studentId}</if>
         <if test="competitionId!=null "> and `competition_id` = #{competitionId}</if>
-                <if test="teamIdFirst!=null "> and `team_id` <![CDATA[=]]>
-                            #{teamIdFirst}
-                </if>
-                <if test="teamNameFirst!=null "> and `team_name` <![CDATA[=]]>
-                            #{teamNameFirst}
-                </if>
-                <if test="studentIdFirst!=null "> and `student_id` <![CDATA[=]]>
-                            #{studentIdFirst}
+                <if test="teamNameFirst!=null "> and `team_name` <![CDATA[like]]>
+                            concat('%',#{teamNameFirst},'%')
                 </if>
                 <if test="competitionIdFirst!=null "> and `competition_id` <![CDATA[=]]>
                             #{competitionIdFirst}

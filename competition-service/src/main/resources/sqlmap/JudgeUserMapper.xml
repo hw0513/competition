@@ -6,13 +6,12 @@
 * 如果你改变了此类 read 请将此行删除
 *  欢迎加入官方QQ群:323237052
 -->
-<mapper namespace="com.hw.competition.service.product.mapper.ProductMapper">
-    <!-- Product -->
-    <resultMap id="resultMap" type="Product">
-                <id column="product_id" property="productId"/>
+<mapper namespace="com.hw.competition.service.judgeuser.mapper.JudgeUserMapper">
+    <!-- JudgeUser -->
+    <resultMap id="resultMap" type="JudgeUser">
+                <id column="judge_user_id" property="judgeUserId"/>
+                <result column="user_id" property="userId" />
                 <result column="competition_id" property="competitionId" />
-                <result column="product_team" property="productTeam" />
-                <result column="product_name" property="productName" />
     </resultMap>
     <!-- 查询单个实体 -->
     <select id="getModel" parameterType="hashmap" resultMap="resultMap">
@@ -32,7 +31,7 @@
     <!-- 查询一组实体 in 语句-->
     <select id="getModelInList" parameterType="hashmap" resultMap="resultMap">
         select  <choose><when test="NotIgnore_!=null and NotIgnore_"><include refid="selectSqlNotIgnoreModel"/> </when><otherwise><include refid="selectSqlIgnoreModel"/></otherwise></choose>
-        from  <include refid="tableSql"/>  where  `product_id` in
+        from  <include refid="tableSql"/>  where  `judge_user_id` in
         <foreach item="id" index="index" collection="idList" open="(" separator="," close=")">#{id}</foreach>
         <include refid="orderGroupLimit"/>
     </select>
@@ -41,39 +40,39 @@
         select count(1)  from  <include refid="tableSql"/>  where 1=1 <include refid="whereSqlModel"/> <include refid="orderGroupLimit"/>
     </select>
     <!-- 插入单个实体 遇到入参null转换成数据库NULL-->
-    <insert id="insertModel" parameterType="Product"  useGeneratedKeys="true" keyProperty="productId" >
+    <insert id="insertModel" parameterType="JudgeUser"  useGeneratedKeys="true" keyProperty="judgeUserId" >
         insert into <include refid="tableSql"/> (<include refid="douFieldSql"/>) values(<include refid="douValueSql"/>)
     </insert>
     <!-- 替换单个实体 如果没有则插入 遇到入参null转换成数据库NULL-->
-    <insert id="replaceModel" parameterType="Product"  useGeneratedKeys="true" keyProperty="productId" >
+    <insert id="replaceModel" parameterType="JudgeUser"  useGeneratedKeys="true" keyProperty="judgeUserId" >
         replace into <include refid="tableSql"/> (<include refid="douFieldSql"/>) values(<include refid="douValueSql"/>)
     </insert>
     <!-- 插入单个实体 遇到入参null转换成数据库默认值-->
-    <insert id="insertModelWithoutNull" parameterType="Product"  useGeneratedKeys="true" keyProperty="productId" >
+    <insert id="insertModelWithoutNull" parameterType="JudgeUser"  useGeneratedKeys="true" keyProperty="judgeUserId" >
         insert into <include refid="tableSql"/> (<include refid="douFieldWithoutNullSql"/>) values(<include refid="douValueWithoutNullSql"/>)
     </insert>
     <!-- 替换单个实体 如果没有则插入 遇到入参null转换成数据库默认值-->
-    <insert id="replaceModelWithoutNull" parameterType="Product"  useGeneratedKeys="true" keyProperty="productId" >
+    <insert id="replaceModelWithoutNull" parameterType="JudgeUser"  useGeneratedKeys="true" keyProperty="judgeUserId" >
         replace into <include refid="tableSql"/> (<include refid="douFieldWithoutNullSql"/>) values(<include refid="douValueWithoutNullSql"/>)
     </insert>
     <!-- 批量插入一组实体 -->
-    <insert id="batchInsertModel" parameterType="java.util.List"   useGeneratedKeys="true" keyProperty="productId" >
+    <insert id="batchInsertModel" parameterType="java.util.List"   useGeneratedKeys="true" keyProperty="judgeUserId" >
         <foreach collection="list" item="item" index="index" open="" close="" separator=";">
             insert into <include refid="tableSql"/> (<include refid="batchDouFieldSql"/>) values (<include refid="batchDouValueSql"/>)
         </foreach>
     </insert>
     <!-- 批量替换一组实体 -->
-    <insert id="batchReplaceModel" parameterType="java.util.List"  useGeneratedKeys="true" keyProperty="productId" >
+    <insert id="batchReplaceModel" parameterType="java.util.List"  useGeneratedKeys="true" keyProperty="judgeUserId" >
         <foreach collection="list" item="item" index="index" open="" close="" separator=";">
             replace into <include refid="tableSql"/> (<include refid="batchDouFieldSql"/>) values (<include refid="batchDouValueSql"/>)
         </foreach>
     </insert>
-    <insert id="batchInsertModelWithoutNull" parameterType="java.util.List"   useGeneratedKeys="true" keyProperty="productId" >
+    <insert id="batchInsertModelWithoutNull" parameterType="java.util.List"   useGeneratedKeys="true" keyProperty="judgeUserId" >
         <foreach collection="list" item="item" index="index" open="" close="" separator=";">
             insert into <include refid="tableSql"/> (<include refid="batchDouFieldWithoutNullSql"/>) values (<include refid="batchDouValueWithoutNullSql"/>)
         </foreach>
     </insert>
-    <insert id="batchReplaceModelWithoutNull" parameterType="java.util.List"  useGeneratedKeys="true" keyProperty="productId" >
+    <insert id="batchReplaceModelWithoutNull" parameterType="java.util.List"  useGeneratedKeys="true" keyProperty="judgeUserId" >
         <foreach collection="list" item="item" index="index" open="" close="" separator=";">
             replace into <include refid="tableSql"/> (<include refid="batchDouFieldWithoutNullSql"/>) values (<include refid="batchDouValueWithoutNullSql"/>)
         </foreach>
@@ -95,14 +94,14 @@
 
     <!-- 批量删除实体 in 根据主键-->
     <delete id="deleteModelByIds" parameterType="java.util.Set">
-        delete from <include refid="tableSql"/> where `product_id` in <foreach item="id" index="index" collection="collection" open="(" separator="," close=")">#{id}</foreach>
+        delete from <include refid="tableSql"/> where `judge_user_id` in <foreach item="id" index="index" collection="collection" open="(" separator="," close=")">#{id}</foreach>
     </delete>
     <!-- 更新一个实体 -->
-    <update id="updateModel" parameterType="Product">
+    <update id="updateModel" parameterType="JudgeUser">
         update <include refid="tableSql"/> <include refid="updateSetSql"/> <include refid="updatePkWhereSql"/>
     </update>
     <!-- 更新一个实体 仅仅当被更新的字段不为空的时候才更新，否则忽略更新-->
-    <update id="updateModelWithoutNull" parameterType="Product">
+    <update id="updateModelWithoutNull" parameterType="JudgeUser">
         update <include refid="tableSql"/> <include refid="updateSetWithoutNullSql"/> <include refid="updatePkWhereSql"/>
     </update>
      <!-- 批量更新实体 传入一组实体，分别根据主键作为查询条件-->
@@ -119,139 +118,120 @@
     <!-- sql 片段 -->
    <sql id="selectSqlIgnoreModel">
         <trim suffixOverrides=",">
-            <if test="productIdIgnore_ == null or !productIdIgnore_">`product_id`,</if>
-            <if test="competitionIdIgnore_ == null or !competitionIdIgnore_">`competition_id`,</if>
-            <if test="productTeamIgnore_ == null or !productTeamIgnore_">`product_team`,</if>
-            <if test="productNameIgnore_ == null or !productNameIgnore_">`product_name`</if>
+            <if test="judgeUserIdIgnore_ == null or !judgeUserIdIgnore_">`judge_user_id`,</if>
+            <if test="userIdIgnore_ == null or !userIdIgnore_">`user_id`,</if>
+            <if test="competitionIdIgnore_ == null or !competitionIdIgnore_">`competition_id`</if>
         </trim>
     </sql>
     <sql id="selectSqlNotIgnoreModel">
         <trim suffixOverrides=",">
-         <if test="productIdNotIgnore_ != null and productIdNotIgnore_">`product_id`,</if>
-         <if test="competitionIdNotIgnore_ != null and competitionIdNotIgnore_">`competition_id`,</if>
-         <if test="productTeamNotIgnore_ != null and productTeamNotIgnore_">`product_team`,</if>
-         <if test="productNameNotIgnore_ != null and productNameNotIgnore_">`product_name`</if>
+         <if test="judgeUserIdNotIgnore_ != null and judgeUserIdNotIgnore_">`judge_user_id`,</if>
+         <if test="userIdNotIgnore_ != null and userIdNotIgnore_">`user_id`,</if>
+         <if test="competitionIdNotIgnore_ != null and competitionIdNotIgnore_">`competition_id`</if>
         </trim>
     </sql>
     <sql id="douFieldSql">
         <trim suffixOverrides=",">
-            <if test="productId!=null">`product_id`,</if> `competition_id`,`product_team`,`product_name`,
+            <if test="judgeUserId!=null">`judge_user_id`,</if> `user_id`,`competition_id`,
         </trim>
     </sql>
     <sql id="douValueSql">
         <trim suffixOverrides=",">
-                <choose><when test="productId!=null">#{productId},</when></choose>
+                <choose><when test="judgeUserId!=null">#{judgeUserId},</when></choose>
+                <choose><when test="userId!=null">#{userId},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="competitionId!=null">#{competitionId},</when><otherwise>NULL,</otherwise></choose>
-                <choose><when test="productTeam!=null">#{productTeam},</when><otherwise>NULL,</otherwise></choose>
-                <choose><when test="productName!=null">#{productName},</when><otherwise>NULL,</otherwise></choose>
         </trim>
     </sql>
 
     <sql id="douFieldWithoutNullSql">
         <trim suffixOverrides=",">
-                <if test="productId!=null">`product_id`,</if>
+                <if test="judgeUserId!=null">`judge_user_id`,</if>
+                <if test="userId!=null">`user_id`,</if>
                 <if test="competitionId!=null">`competition_id`,</if>
-                <if test="productTeam!=null">`product_team`,</if>
-                <if test="productName!=null">`product_name`,</if>
 
         </trim>
     </sql>
     <sql id="douValueWithoutNullSql">
         <trim suffixOverrides=",">
-                <choose><when test="productId!=null">#{productId},</when></choose>
+                <choose><when test="judgeUserId!=null">#{judgeUserId},</when></choose>
+                <choose><when test="userId!=null">#{userId},</when></choose>
                 <choose><when test="competitionId!=null">#{competitionId},</when></choose>
-                <choose><when test="productTeam!=null">#{productTeam},</when></choose>
-                <choose><when test="productName!=null">#{productName},</when></choose>
         </trim>
     </sql>
     <sql id="batchDouFieldSql">
         <trim suffixOverrides=",">
-                <if test="item.productId!=null">`product_id`,</if> `competition_id`,`product_team`,`product_name`,
+                <if test="item.judgeUserId!=null">`judge_user_id`,</if> `user_id`,`competition_id`,
         </trim>
     </sql>
     <sql id="batchDouValueSql">
         <trim suffixOverrides=",">
-                <choose><when test="item.productId!=null">#{item.productId},</when></choose>
+                <choose><when test="item.judgeUserId!=null">#{item.judgeUserId},</when></choose>
+                <choose><when test="item.userId!=null">#{item.userId},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="item.competitionId!=null">#{item.competitionId},</when><otherwise>NULL,</otherwise></choose>
-                <choose><when test="item.productTeam!=null">#{item.productTeam},</when><otherwise>NULL,</otherwise></choose>
-                <choose><when test="item.productName!=null">#{item.productName},</when><otherwise>NULL,</otherwise></choose>
         </trim>
     </sql>
     <sql id="batchDouFieldWithoutNullSql">
         <trim suffixOverrides=",">
-                <if test="item.productId!=null">`product_id`,</if>
+                <if test="item.judgeUserId!=null">`judge_user_id`,</if>
+                <if test="item.userId!=null">`user_id`,</if>
                 <if test="item.competitionId!=null">`competition_id`,</if>
-                <if test="item.productTeam!=null">`product_team`,</if>
-                <if test="item.productName!=null">`product_name`,</if>
 
         </trim>
     </sql>
     <sql id="batchDouValueWithoutNullSql">
         <trim suffixOverrides=",">
-                <choose><when test="item.productId!=null">#{item.productId},</when></choose>
+                <choose><when test="item.judgeUserId!=null">#{item.judgeUserId},</when></choose>
+                <choose><when test="item.userId!=null">#{item.userId},</when></choose>
                 <choose><when test="item.competitionId!=null">#{item.competitionId},</when></choose>
-                <choose><when test="item.productTeam!=null">#{item.productTeam},</when></choose>
-                <choose><when test="item.productName!=null">#{item.productName},</when></choose>
         </trim>
     </sql>
     <sql id="updateSetSql">
         <set>
+                    <choose> <when test="userId!=null">`user_id`=#{userId}</when> <otherwise> `user_id`=NULL</otherwise> </choose>,
                     <choose> <when test="competitionId!=null">`competition_id`=#{competitionId}</when> <otherwise> `competition_id`=NULL</otherwise> </choose>,
-                    <choose> <when test="productTeam!=null">`product_team`=#{productTeam}</when> <otherwise> `product_team`=NULL</otherwise> </choose>,
-                    <choose> <when test="productName!=null">`product_name`=#{productName}</when> <otherwise> `product_name`=NULL</otherwise> </choose>,
         </set>
     </sql>
     <sql id="updateSetWithoutNullSql">
         <set>
+                    <choose><when test="userId!=null">`user_id`=#{userId},</when></choose>
                     <choose><when test="competitionId!=null">`competition_id`=#{competitionId},</when></choose>
-                    <choose><when test="productTeam!=null">`product_team`=#{productTeam},</when></choose>
-                    <choose><when test="productName!=null">`product_name`=#{productName},</when></choose>
         </set>
     </sql>
     <sql id="magicalcoderPkWhereSql">
         where 1=1
-            and `product_id` = #{magicalCoderPrimaryKeyName}
+            and `judge_user_id` = #{magicalCoderPrimaryKeyName}
     </sql>
     <sql id="updatePkWhereSql">
         where 1=1
-            and `product_id` = #{productId}
+            and `judge_user_id` = #{judgeUserId}
     </sql>
     <sql id="batchUpdateSetSql">
         <set>
+                    <choose> <when test="item.userId!=null">`user_id`=#{item.userId}</when> <otherwise> `user_id`=NULL</otherwise> </choose>,
                     <choose> <when test="item.competitionId!=null">`competition_id`=#{item.competitionId}</when> <otherwise> `competition_id`=NULL</otherwise> </choose>,
-                    <choose> <when test="item.productTeam!=null">`product_team`=#{item.productTeam}</when> <otherwise> `product_team`=NULL</otherwise> </choose>,
-                    <choose> <when test="item.productName!=null">`product_name`=#{item.productName}</when> <otherwise> `product_name`=NULL</otherwise> </choose>,
         </set>
     </sql>
     <sql id="batchUpdateWithoutNullSetSql">
         <set>
+                    <choose> <when test="item.userId!=null">`user_id`=#{item.userId},</when></choose>
                     <choose> <when test="item.competitionId!=null">`competition_id`=#{item.competitionId},</when></choose>
-                    <choose> <when test="item.productTeam!=null">`product_team`=#{item.productTeam},</when></choose>
-                    <choose> <when test="item.productName!=null">`product_name`=#{item.productName},</when></choose>
         </set>
     </sql>
     <sql id="batchUpdatePkWhereSql">
         where 1=1
-            and `product_id` = #{item.productId}
+            and `judge_user_id` = #{item.judgeUserId}
     </sql>
     <!-- 这里可以加上数据库名称 方便的切换数据库-->
     <sql id="tableSql">
-        competition.product
+        competition.judge_user
     </sql>
 
    <sql id="whereSqlModel">
-        <if test="productId!=null "> and `product_id` = #{productId}</if>
+        <if test="judgeUserId!=null "> and `judge_user_id` = #{judgeUserId}</if>
+        <if test="userId!=null "> and `user_id` = #{userId}</if>
         <if test="competitionId!=null "> and `competition_id` = #{competitionId}</if>
-        <if test="productTeam!=null "> and `product_team` = #{productTeam}</if>
-        <if test="productName!=null "> and `product_name` = #{productName}</if>
                 <if test="competitionIdFirst!=null "> and `competition_id` <![CDATA[=]]>
                             #{competitionIdFirst}
-                </if>
-                <if test="productTeamFirst!=null "> and `product_team` <![CDATA[=]]>
-                            #{productTeamFirst}
-                </if>
-                <if test="productNameFirst!=null "> and `product_name` <![CDATA[like]]>
-                            concat('%',#{productNameFirst},'%')
                 </if>
         <!--<if test="whereSql!=null"> ${whereSql}</if>-->
     </sql>
@@ -260,24 +240,21 @@
         <if test="safeGroupBy!=null and safeGroupBy!=''">
             group by
             <choose>
-                <when test="safeGroupBy != null and safeGroupBy == 'product_id'">  `product_id` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'judge_user_id'">  `judge_user_id` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'user_id'">  `user_id` </when>
                 <when test="safeGroupBy != null and safeGroupBy == 'competition_id'">  `competition_id` </when>
-                <when test="safeGroupBy != null and safeGroupBy == 'product_team'">  `product_team` </when>
-                <when test="safeGroupBy != null and safeGroupBy == 'product_name'">  `product_name` </when>
             </choose>
         </if>
     </sql>
     <sql id="safeOrderBy">
         <if test="safeOrderBy!=null and safeOrderBy!=''">
             <choose>
-                <when test="safeOrderBy != null and safeOrderBy == 'product_id desc'"> order by  `product_id` desc </when>
-                <when test="safeOrderBy != null and safeOrderBy == 'product_id asc'"> order by `product_id` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'judge_user_id desc'"> order by  `judge_user_id` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'judge_user_id asc'"> order by `judge_user_id` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'user_id desc'"> order by  `user_id` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'user_id asc'"> order by `user_id` asc </when>
                 <when test="safeOrderBy != null and safeOrderBy == 'competition_id desc'"> order by  `competition_id` desc </when>
                 <when test="safeOrderBy != null and safeOrderBy == 'competition_id asc'"> order by `competition_id` asc </when>
-                <when test="safeOrderBy != null and safeOrderBy == 'product_team desc'"> order by  `product_team` desc </when>
-                <when test="safeOrderBy != null and safeOrderBy == 'product_team asc'"> order by `product_team` asc </when>
-                <when test="safeOrderBy != null and safeOrderBy == 'product_name desc'"> order by  `product_name` desc </when>
-                <when test="safeOrderBy != null and safeOrderBy == 'product_name asc'"> order by `product_name` asc </when>
             </choose>
         </if>
     </sql>

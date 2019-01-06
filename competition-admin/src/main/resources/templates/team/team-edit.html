@@ -32,7 +32,7 @@
     <div class="layui-form-item layui-row layui-col-xs12 security_edit_form_param_competitionId">
         <label class="layui-form-label">竞赛名称</label>
         <div class="layui-input-block">
-            <select name="competitionId"  data-url="admin/competition_rest/search" data-id="competitionId" data-text-fields="competitionName" class="magicalcoder-foreign-select2 layui-input" lay-ignore="true" lay-verify="magicalCoderVerify" magicalcoder-verify="" data-value=""  placeholder="竞赛Id"><option value=""></option></select>
+            <select name="competitionId"  data-url="admin/competition_rest/search" data-id="competitionId" data-text-fields="competitionName,userId" class="magicalcoder-foreign-select2 layui-input" lay-ignore="true" lay-verify="magicalCoderVerify|mc_required" magicalcoder-verify="" data-value="" disabled="true" placeholder="竞赛Id"><option value=""></option></select>
         </div>
     </div>
 

@@ -13,6 +13,7 @@
                 <result column="product_id" property="productId" />
                 <result column="dict_id" property="dictId" />
                 <result column="product_file" property="productFile" />
+                <result column="competition_id" property="competitionId" />
     </resultMap>
     <!-- 查询单个实体 -->
     <select id="getModel" parameterType="hashmap" resultMap="resultMap">
@@ -122,7 +123,8 @@
             <if test="productMaterialIdIgnore_ == null or !productMaterialIdIgnore_">`product_material_id`,</if>
             <if test="productIdIgnore_ == null or !productIdIgnore_">`product_id`,</if>
             <if test="dictIdIgnore_ == null or !dictIdIgnore_">`dict_id`,</if>
-            <if test="productFileIgnore_ == null or !productFileIgnore_">`product_file`</if>
+            <if test="productFileIgnore_ == null or !productFileIgnore_">`product_file`,</if>
+            <if test="competitionIdIgnore_ == null or !competitionIdIgnore_">`competition_id`</if>
         </trim>
     </sql>
     <sql id="selectSqlNotIgnoreModel">
@@ -130,12 +132,13 @@
          <if test="productMaterialIdNotIgnore_ != null and productMaterialIdNotIgnore_">`product_material_id`,</if>
          <if test="productIdNotIgnore_ != null and productIdNotIgnore_">`product_id`,</if>
          <if test="dictIdNotIgnore_ != null and dictIdNotIgnore_">`dict_id`,</if>
-         <if test="productFileNotIgnore_ != null and productFileNotIgnore_">`product_file`</if>
+         <if test="productFileNotIgnore_ != null and productFileNotIgnore_">`product_file`,</if>
+         <if test="competitionIdNotIgnore_ != null and competitionIdNotIgnore_">`competition_id`</if>
         </trim>
     </sql>
     <sql id="douFieldSql">
         <trim suffixOverrides=",">
-            <if test="productMaterialId!=null">`product_material_id`,</if> `product_id`,`dict_id`,`product_file`,
+            <if test="productMaterialId!=null">`product_material_id`,</if> `product_id`,`dict_id`,`product_file`,`competition_id`,
         </trim>
     </sql>
     <sql id="douValueSql">
@@ -144,6 +147,7 @@
                 <choose><when test="productId!=null">#{productId},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="dictId!=null">#{dictId},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="productFile!=null">#{productFile},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="competitionId!=null">#{competitionId},</when><otherwise>NULL,</otherwise></choose>
         </trim>
     </sql>
 
@@ -153,6 +157,7 @@
                 <if test="productId!=null">`product_id`,</if>
                 <if test="dictId!=null">`dict_id`,</if>
                 <if test="productFile!=null">`product_file`,</if>
+                <if test="competitionId!=null">`competition_id`,</if>
 
         </trim>
     </sql>
@@ -162,11 +167,12 @@
                 <choose><when test="productId!=null">#{productId},</when></choose>
                 <choose><when test="dictId!=null">#{dictId},</when></choose>
                 <choose><when test="productFile!=null">#{productFile},</when></choose>
+                <choose><when test="competitionId!=null">#{competitionId},</when></choose>
         </trim>
     </sql>
     <sql id="batchDouFieldSql">
         <trim suffixOverrides=",">
-                <if test="item.productMaterialId!=null">`product_material_id`,</if> `product_id`,`dict_id`,`product_file`,
+                <if test="item.productMaterialId!=null">`product_material_id`,</if> `product_id`,`dict_id`,`product_file`,`competition_id`,
         </trim>
     </sql>
     <sql id="batchDouValueSql">
@@ -175,6 +181,7 @@
                 <choose><when test="item.productId!=null">#{item.productId},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="item.dictId!=null">#{item.dictId},</when><otherwise>NULL,</otherwise></choose>
                 <choose><when test="item.productFile!=null">#{item.productFile},</when><otherwise>NULL,</otherwise></choose>
+                <choose><when test="item.competitionId!=null">#{item.competitionId},</when><otherwise>NULL,</otherwise></choose>
         </trim>
     </sql>
     <sql id="batchDouFieldWithoutNullSql">
@@ -183,6 +190,7 @@
                 <if test="item.productId!=null">`product_id`,</if>
                 <if test="item.dictId!=null">`dict_id`,</if>
                 <if test="item.productFile!=null">`product_file`,</if>
+                <if test="item.competitionId!=null">`competition_id`,</if>
 
         </trim>
     </sql>
@@ -192,6 +200,7 @@
                 <choose><when test="item.productId!=null">#{item.productId},</when></choose>
                 <choose><when test="item.dictId!=null">#{item.dictId},</when></choose>
                 <choose><when test="item.productFile!=null">#{item.productFile},</when></choose>
+                <choose><when test="item.competitionId!=null">#{item.competitionId},</when></choose>
         </trim>
     </sql>
     <sql id="updateSetSql">
@@ -199,6 +208,7 @@
                     <choose> <when test="productId!=null">`product_id`=#{productId}</when> <otherwise> `product_id`=NULL</otherwise> </choose>,
                     <choose> <when test="dictId!=null">`dict_id`=#{dictId}</when> <otherwise> `dict_id`=NULL</otherwise> </choose>,
                     <choose> <when test="productFile!=null">`product_file`=#{productFile}</when> <otherwise> `product_file`=NULL</otherwise> </choose>,
+                    <choose> <when test="competitionId!=null">`competition_id`=#{competitionId}</when> <otherwise> `competition_id`=NULL</otherwise> </choose>,
         </set>
     </sql>
     <sql id="updateSetWithoutNullSql">
@@ -206,6 +216,7 @@
                     <choose><when test="productId!=null">`product_id`=#{productId},</when></choose>
                     <choose><when test="dictId!=null">`dict_id`=#{dictId},</when></choose>
                     <choose><when test="productFile!=null">`product_file`=#{productFile},</when></choose>
+                    <choose><when test="competitionId!=null">`competition_id`=#{competitionId},</when></choose>
         </set>
     </sql>
     <sql id="magicalcoderPkWhereSql">
@@ -221,6 +232,7 @@
                     <choose> <when test="item.productId!=null">`product_id`=#{item.productId}</when> <otherwise> `product_id`=NULL</otherwise> </choose>,
                     <choose> <when test="item.dictId!=null">`dict_id`=#{item.dictId}</when> <otherwise> `dict_id`=NULL</otherwise> </choose>,
                     <choose> <when test="item.productFile!=null">`product_file`=#{item.productFile}</when> <otherwise> `product_file`=NULL</otherwise> </choose>,
+                    <choose> <when test="item.competitionId!=null">`competition_id`=#{item.competitionId}</when> <otherwise> `competition_id`=NULL</otherwise> </choose>,
         </set>
     </sql>
     <sql id="batchUpdateWithoutNullSetSql">
@@ -228,6 +240,7 @@
                     <choose> <when test="item.productId!=null">`product_id`=#{item.productId},</when></choose>
                     <choose> <when test="item.dictId!=null">`dict_id`=#{item.dictId},</when></choose>
                     <choose> <when test="item.productFile!=null">`product_file`=#{item.productFile},</when></choose>
+                    <choose> <when test="item.competitionId!=null">`competition_id`=#{item.competitionId},</when></choose>
         </set>
     </sql>
     <sql id="batchUpdatePkWhereSql">
@@ -244,17 +257,12 @@
         <if test="productId!=null "> and `product_id` = #{productId}</if>
         <if test="dictId!=null "> and `dict_id` = #{dictId}</if>
         <if test="productFile!=null "> and `product_file` = #{productFile}</if>
-                <if test="productMaterialIdFirst!=null "> and `product_material_id` <![CDATA[=]]>
-                            #{productMaterialIdFirst}
-                </if>
+        <if test="competitionId!=null "> and `competition_id` = #{competitionId}</if>
                 <if test="productIdFirst!=null "> and `product_id` <![CDATA[=]]>
                             #{productIdFirst}
                 </if>
-                <if test="dictIdFirst!=null "> and `dict_id` <![CDATA[=]]>
-                            #{dictIdFirst}
-                </if>
-                <if test="productFileFirst!=null "> and `product_file` <![CDATA[=]]>
-                            #{productFileFirst}
+                <if test="competitionIdFirst!=null "> and `competition_id` <![CDATA[=]]>
+                            #{competitionIdFirst}
                 </if>
         <!--<if test="whereSql!=null"> ${whereSql}</if>-->
     </sql>
@@ -267,6 +275,7 @@
                 <when test="safeGroupBy != null and safeGroupBy == 'product_id'">  `product_id` </when>
                 <when test="safeGroupBy != null and safeGroupBy == 'dict_id'">  `dict_id` </when>
                 <when test="safeGroupBy != null and safeGroupBy == 'product_file'">  `product_file` </when>
+                <when test="safeGroupBy != null and safeGroupBy == 'competition_id'">  `competition_id` </when>
             </choose>
         </if>
     </sql>
@@ -281,6 +290,8 @@
                 <when test="safeOrderBy != null and safeOrderBy == 'dict_id asc'"> order by `dict_id` asc </when>
                 <when test="safeOrderBy != null and safeOrderBy == 'product_file desc'"> order by  `product_file` desc </when>
                 <when test="safeOrderBy != null and safeOrderBy == 'product_file asc'"> order by `product_file` asc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'competition_id desc'"> order by  `competition_id` desc </when>
+                <when test="safeOrderBy != null and safeOrderBy == 'competition_id asc'"> order by `competition_id` asc </when>
             </choose>
         </if>
     </sql>

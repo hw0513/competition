@@ -286,35 +286,11 @@
         <if test="productDatetimeEnd!=null "> and `product_datetime_end` = #{productDatetimeEnd,jdbcType=TIMESTAMP}</if>
         <if test="judgeDatetimeEnd!=null "> and `judge_datetime_end` = #{judgeDatetimeEnd,jdbcType=TIMESTAMP}</if>
         <if test="userId!=null "> and `user_id` = #{userId}</if>
-                <if test="competitionIdFirst!=null "> and `competition_id` <![CDATA[=]]>
-                            #{competitionIdFirst}
+                <if test="competitionNameFirst!=null "> and `competition_name` <![CDATA[like]]>
+                            concat('%',#{competitionNameFirst},'%')
                 </if>
-                <if test="enrollDatetimeBeginFirst!=null "> and `enroll_datetime_begin` <![CDATA[>=]]>
-                        #{enrollDatetimeBeginFirst,jdbcType=TIMESTAMP}
-                </if>
-                <if test="enrollDatetimeBeginSecond!=null "> and `enroll_datetime_begin` <![CDATA[<=]]>
-                        #{enrollDatetimeBeginSecond,jdbcType=TIMESTAMP}
-                </if>
-                <if test="enrollDatetimeEndFirst!=null "> and `enroll_datetime_end` <![CDATA[>=]]>
-                        #{enrollDatetimeEndFirst,jdbcType=TIMESTAMP}
-                </if>
-                <if test="enrollDatetimeEndSecond!=null "> and `enroll_datetime_end` <![CDATA[<=]]>
-                        #{enrollDatetimeEndSecond,jdbcType=TIMESTAMP}
-                </if>
-                <if test="productDatetimeEndFirst!=null "> and `product_datetime_end` <![CDATA[>=]]>
-                        #{productDatetimeEndFirst,jdbcType=TIMESTAMP}
-                </if>
-                <if test="productDatetimeEndSecond!=null "> and `product_datetime_end` <![CDATA[<=]]>
-                        #{productDatetimeEndSecond,jdbcType=TIMESTAMP}
-                </if>
-                <if test="judgeDatetimeEndFirst!=null "> and `judge_datetime_end` <![CDATA[>=]]>
-                        #{judgeDatetimeEndFirst,jdbcType=TIMESTAMP}
-                </if>
-                <if test="judgeDatetimeEndSecond!=null "> and `judge_datetime_end` <![CDATA[<=]]>
-                        #{judgeDatetimeEndSecond,jdbcType=TIMESTAMP}
-                </if>
-                <if test="userIdFirst!=null "> and `user_id` <![CDATA[=]]>
-                            #{userIdFirst}
+                <if test="userIdFirst!=null "> and `user_id` <![CDATA[like]]>
+                            concat('%',#{userIdFirst},'%')
                 </if>
         <!--<if test="whereSql!=null"> ${whereSql}</if>-->
     </sql>

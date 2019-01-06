@@ -17,6 +17,7 @@ public class ProductMaterial implements Serializable{
     private Long productId;//材料所属产品ID
     private Long dictId;//材料字典id
     private String productFile;//材料文件
+    private Long competitionId;//所属竞赛
 
 
     public Long getProductMaterialId(){
@@ -45,5 +46,12 @@ public class ProductMaterial implements Serializable{
     }
     public void setProductFile(String productFile){
         this.productFile = productFile;
+    }
+
+    public Long getCompetitionId(){
+        return competitionId;
+    }
+    public void setCompetitionId(Long competitionId){
+        this.competitionId = competitionId;
     }
 }
