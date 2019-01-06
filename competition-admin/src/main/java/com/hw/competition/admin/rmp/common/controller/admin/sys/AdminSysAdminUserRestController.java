@@ -95,4 +95,8 @@ public class AdminSysAdminUserRestController extends CommonRestController<SysAdm
         super.commonService = sysAdminUserService;
         super.primaryKey = "id";//硬编码此实体的主键名称
     }
+
+    /**
+     * 按角色搜索用户
+     */
 }
